@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import z from "zod";
+import Axios from "@/config/Axios";
 
 function Login() {
   const {
@@ -17,7 +18,12 @@ function Login() {
     resolver: zodResolver(validate.loginvalidation),
   });
   async function SubmitIt(values: z.infer<typeof validate.loginvalidation>) {
-    console.log(values);
+    try {
+      const response = await Axios.post("/auth", values);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <div className="h-screen w-full flex items-center justify-center ">
