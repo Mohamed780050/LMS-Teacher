@@ -11,7 +11,7 @@ const NavBarLinks: NavBarLinksType[] = [
   {
     icon: React.createElement(LucideListVideo, { size: 30 }),
     label: "My Courses",
-    link: "/courses",
+    link: "/mycourses",
   },
 ];
 export default { NavBarLinks };
