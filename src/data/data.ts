@@ -1,4 +1,4 @@
-import { NavBarLinksType } from "@/interfaces/interfaces";
+import { loginInputs, NavBarLinksType } from "@/interfaces/interfaces";
 import { BarChart, LucideListVideo } from "lucide-react";
 import React from "react";
 
@@ -14,4 +14,10 @@ const NavBarLinks: NavBarLinksType[] = [
     link: "/mycourses",
   },
 ];
-export default { NavBarLinks };
+
+const LoginInputs: loginInputs[] = [
+  { name: "identfire", placeholder: "Username or Email", type: "text" },
+  { name: "password", placeholder: "Password", type: "password" },
+];
+
+export default { NavBarLinks, LoginInputs };
