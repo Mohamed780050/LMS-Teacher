@@ -19,6 +19,8 @@ function SignUp() {
   });
   async function SubmitIt(values: z.infer<typeof validate.signupValidation>) {
     try {
+      if (values.password !== values.confirmPassword)
+        throw Error("Not the same password");
       const response = await Axios.post("/auth", values);
       console.log(response);
     } catch (err) {
@@ -58,7 +60,10 @@ function SignUp() {
         </div>
         <p>
           have an account{" "}
-          <Link to="/Authentaction/login" className="text-sky-800 font-medium hover:underline">
+          <Link
+            to="/Authentaction/login"
+            className="text-sky-800 font-medium hover:underline"
+          >
             log in now.
           </Link>
         </p>
