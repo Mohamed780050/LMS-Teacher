@@ -1,4 +1,8 @@
-import { loginInputs, NavBarLinksType } from "@/interfaces/interfaces";
+import {
+  loginInputs,
+  NavBarLinksType,
+  SignUpInputsType,
+} from "@/interfaces/interfaces";
 import { BarChart, LucideListVideo } from "lucide-react";
 import React from "react";
 
@@ -19,5 +23,11 @@ const LoginInputs: loginInputs[] = [
   { name: "identfire", placeholder: "Username or Email", type: "text" },
   { name: "password", placeholder: "Password", type: "password" },
 ];
+const SignUpInputs: SignUpInputsType[] = [
+  { name: "email", placeholder: "Email", type: "text" },
+  { name: "username", placeholder: "Username", type: "text" },
+  { name: "password", placeholder: "Password", type: "password" },
+  { name: "confirmPassword", placeholder: "confirmPassword", type: "password" },
+];
 
-export default { NavBarLinks, LoginInputs };
+export default { NavBarLinks, LoginInputs, SignUpInputs };

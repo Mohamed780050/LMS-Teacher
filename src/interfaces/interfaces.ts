@@ -10,3 +10,8 @@ export interface loginInputs {
   placeholder: string;
   type: string;
 }
+export interface SignUpInputsType {
+  name: "password" | "username" | "email" | "confirmPassword";
+  placeholder: string;
+  type: string;
+}

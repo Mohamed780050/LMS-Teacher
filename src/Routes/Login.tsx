@@ -31,7 +31,7 @@ function Login() {
         className="border p-5 space-y-3 min-w-72 sm:min-w-96"
         onSubmit={handleSubmit(SubmitIt)}
       >
-        <div className="font-bold text-xl text-sky-800 flex flex-col items-center">
+        <div className="font-bold text-xl text-sky-600 flex flex-col items-center">
           <Logo />
           Login
         </div>
@@ -58,7 +58,10 @@ function Login() {
         </div>
         <p>
           have no account{" "}
-          <Link to="/Authentaction/signup" className="text-sky-800 font-medium">
+          <Link
+            to="/Authentaction/signup"
+            className="text-sky-800 font-medium hover:underline"
+          >
             Sign Up ?
           </Link>
         </p>
