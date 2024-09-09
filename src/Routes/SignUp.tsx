@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import data from "@/data/data";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import z from "zod";
@@ -11,7 +11,9 @@ import Axios from "@/config/Axios";
 import { useDispatch } from "react-redux";
 import { setPasswordLength } from "@/Redux/passwordLength";
 import PasswordStrengthMeter from "@/components/PasswordChecker";
+import toast from "react-hot-toast";
 function SignUp() {
+  const Navigate = useNavigate();
   const dispath = useDispatch();
   const {
     handleSubmit,
@@ -24,9 +26,20 @@ function SignUp() {
     try {
       if (values.password !== values.confirmPassword)
         throw Error("Not the same password");
-      const response = await Axios.post("/auth", values);
-      console.log(response);
-    } catch (err) {
+      const response = await Axios.post("/teacher", values);
+      toast.success(response.data?.message);
+      setTimeout(() => {
+        Navigate("/Authentaction/login");
+      }, 2000);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      toast.error(err?.response?.data?.message, {
+        style: {
+          textAlign: "center",
+          fontWeight: "bold",
+        },
+        duration: 4000,
+      });
       console.log(err);
     }
   }
@@ -46,6 +59,7 @@ function SignUp() {
         {data.SignUpInputs.map((input) => (
           <div>
             <Input
+              disabled={isSubmitting}
               type={input.type}
               placeholder={input.placeholder}
               {...register(input.name)}
@@ -67,7 +81,7 @@ function SignUp() {
         ))}
         <div>
           <Button disabled={isSubmitting} type="submit">
-            {isSubmitting ? "loading" : "login"}
+            {isSubmitting ? "loading" : "Sign Up"}
           </Button>
         </div>
         <p>

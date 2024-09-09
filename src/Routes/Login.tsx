@@ -20,7 +20,7 @@ function Login() {
   async function SubmitIt(values: z.infer<typeof validate.loginvalidation>) {
     try {
       const response = await Axios.post("/auth", values);
-      console.log(response);
+      localStorage.setItem("data", JSON.stringify(response.data));
     } catch (err) {
       console.log(err);
     }
@@ -30,8 +30,8 @@ function Login() {
       <form
         className="border p-5 space-y-3 min-w-72 sm:min-w-96"
         onSubmit={handleSubmit(SubmitIt)}
-        >
-          <h2 className="relative bg-sky-600 text-white font-bold text-center teacher">
+      >
+        <h2 className="relative bg-sky-600 text-white font-bold text-center teacher">
           Teachers
         </h2>
         <div className="font-bold text-xl text-sky-600 flex flex-col items-center">
@@ -41,6 +41,7 @@ function Login() {
         {data.LoginInputs.map((input) => (
           <div>
             <Input
+              disabled={isSubmitting}
               type={input.type}
               placeholder={input.placeholder}
               {...register(input.name)}
