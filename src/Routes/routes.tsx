@@ -2,6 +2,7 @@ import Main from "@/Layout/main";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Outlet,
   Route,
 } from "react-router-dom";
 import Home from "./Home";
@@ -9,6 +10,8 @@ import Courses from "./Courses";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import ProtectedRoutes from "./ProtectedRoutes";
+import CreateACourse from "./CreateACourse";
+import Notfound from "@/components/Notfound";
 const key = localStorage.getItem("data");
 const data = key ? JSON.parse(key) : null;
 const isAllowed = data !== null ? data.jwt : false;
@@ -34,10 +37,13 @@ const routes = createBrowserRouter(
               redirctedPath="Authentaction/login"
               isAllowed={isAllowed}
             >
-              <Courses />
+              <Outlet />
             </ProtectedRoutes>
           }
-        />
+        >
+          <Route index element={<Courses />}></Route>
+          <Route path="createACourse" element={<CreateACourse />} />
+        </Route>
       </Route>
       <Route path="Authentaction">
         <Route
@@ -57,6 +63,7 @@ const routes = createBrowserRouter(
           }
         />
       </Route>
+      <Route path="*" element={<Notfound />} />
     </>
   )
 );

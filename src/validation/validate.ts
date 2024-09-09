@@ -26,4 +26,10 @@ const signupValidation = z
     message: "Password doesn't match",
     path: ["confirmPassword"],
   });
-export default { loginvalidation, signupValidation };
+const MakeCourseName = z.object({
+  courseName: z
+    .string()
+    .min(1, { message: "Field is empty" })
+    .min(5, { message: "less than 5 chars" }),
+});
+export default { loginvalidation, signupValidation, MakeCourseName };
