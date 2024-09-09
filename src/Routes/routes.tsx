@@ -9,7 +9,9 @@ import Courses from "./Courses";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import ProtectedRoutes from "./ProtectedRoutes";
-const isAllowed = false;
+const key = localStorage.getItem("data");
+const data = key ? JSON.parse(key) : null;
+const isAllowed = data !== null ? data.jwt : false;
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <>
