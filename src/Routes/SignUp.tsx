@@ -8,8 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import z from "zod";
 import Axios from "@/config/Axios";
-
+import { useDispatch } from "react-redux";
+import { setPasswordLength } from "@/Redux/passwordLength";
+import PasswordStrengthMeter from "@/components/PasswordChecker";
 function SignUp() {
+  const dispath = useDispatch();
   const {
     handleSubmit,
     register,
@@ -43,7 +46,13 @@ function SignUp() {
               type={input.type}
               placeholder={input.placeholder}
               {...register(input.name)}
+              onChange={
+                input.name === "password"
+                  ? (e) => dispath(setPasswordLength(e.target.value))
+                  : undefined
+              }
             />
+            {input.name === "password" && <PasswordStrengthMeter />}
             {errors[input.name] ? (
               <span className="text-red-700 ml-2 mt-2">
                 {errors[input.name]?.message}

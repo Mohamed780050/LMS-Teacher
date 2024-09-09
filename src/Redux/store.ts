@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
+import passwordLength from "./passwordLength";
 // ...
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    passwordLength: passwordLength,
+  },
 });
 
 // Get the type of our store variable
