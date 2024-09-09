@@ -3,3 +3,23 @@ a.active {
   background-color: rgb(186 230 253 / 0.2);
   border-right: 4px solid #0369a1;
 }
+.teacher {
+  width: calc(100% + 80px);
+  left: -40px;
+}
+.teacher::before {
+  content: "";
+  position: absolute;
+  border-color: #0b4d70 #0b4d70 transparent transparent;
+  border-width: 10px;
+  left: 1px;
+  top: 24px;
+}
+.teacher::after {
+  content: "";
+  position: absolute;
+  border-color: #0b4d70 transparent transparent #0b4d70;
+  border-width: 10px;
+  right: 0px;
+  top: 24px;
+}

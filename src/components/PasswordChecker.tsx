@@ -1,5 +1,3 @@
-"use client";
-
 import { Progress } from "@/components/ui/progress";
 import { RootState } from "@/Redux/store";
 import { useSelector } from "react-redux";

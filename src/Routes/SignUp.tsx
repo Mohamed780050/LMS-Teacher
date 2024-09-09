@@ -36,6 +36,9 @@ function SignUp() {
         className="border p-5 space-y-3 min-w-72 sm:min-w-96"
         onSubmit={handleSubmit(SubmitIt)}
       >
+        <h2 className="relative bg-sky-600 text-white font-bold text-center teacher">
+          Teachers
+        </h2>
         <div className="font-bold text-xl text-sky-600 flex flex-col items-center">
           <Logo />
           Sign Up
