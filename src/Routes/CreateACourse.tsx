@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Axios from "@/config/Axios";
+import { editCourse } from "@/Redux/editingCourse";
 import validate from "@/validation/validate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import z from "zod";
 
 function CreateACourse() {
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     handleSubmit,
     register,
@@ -19,7 +24,12 @@ function CreateACourse() {
     try {
       const key = localStorage.getItem("data");
       const data = key ? JSON.parse(key) : null;
-      await Axios.post("/courses", { ...values, AuthorId: data.info.id });
+      const response = await Axios.post("/courses", {
+        ...values,
+        AuthorId: data.info.id,
+      });
+      dispatch(editCourse(response.data))
+      Navigate(`/mycourses/editeCourse/${response.data._id}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       throw Error(err?.message);

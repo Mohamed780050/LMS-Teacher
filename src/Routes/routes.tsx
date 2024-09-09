@@ -12,6 +12,7 @@ import Login from "./Login";
 import ProtectedRoutes from "./ProtectedRoutes";
 import CreateACourse from "./CreateACourse";
 import Notfound from "@/components/Notfound";
+import EditeCourse from "./EditeCourse";
 const key = localStorage.getItem("data");
 const data = key ? JSON.parse(key) : null;
 const isAllowed = data !== null ? data.jwt : false;
@@ -43,6 +44,7 @@ const routes = createBrowserRouter(
         >
           <Route index element={<Courses />}></Route>
           <Route path="createACourse" element={<CreateACourse />} />
+          <Route path="editeCourse/:id" element={<EditeCourse />} />
         </Route>
       </Route>
       <Route path="Authentaction">

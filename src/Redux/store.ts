@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import passwordLength from "./passwordLength";
+import editingCourse from "./editingCourse";
 // ...
 
 export const store = configureStore({
   reducer: {
     passwordLength: passwordLength,
+    editingCourse: editingCourse,
   },
 });
 
