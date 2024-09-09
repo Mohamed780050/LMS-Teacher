@@ -21,6 +21,7 @@ function Login() {
     try {
       const response = await Axios.post("/auth", values);
       localStorage.setItem("data", JSON.stringify(response.data));
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }

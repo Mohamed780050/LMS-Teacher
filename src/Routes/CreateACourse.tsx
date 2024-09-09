@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Axios from "@/config/Axios";
 import validate from "@/validation/validate";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,9 +17,12 @@ function CreateACourse() {
 
   async function MakeACourse(values: z.infer<typeof validate.MakeCourseName>) {
     try {
-      console.log(values);
-    } catch (err) {
-      console.log(err);
+      const key = localStorage.getItem("data");
+      const data = key ? JSON.parse(key) : null;
+      await Axios.post("/courses", { ...values, AuthorId: data.info.id });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+      throw Error(err?.message);
     }
   }
 
