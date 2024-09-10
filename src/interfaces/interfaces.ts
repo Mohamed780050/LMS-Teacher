@@ -28,4 +28,6 @@ export interface CourseInfo {
   };
   catagory: string[];
   AuthorId: string;
+  completed: number;
+  total: 5;
 }

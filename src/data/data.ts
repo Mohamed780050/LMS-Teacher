@@ -8,14 +8,14 @@ import React from "react";
 
 const NavBarLinks: NavBarLinksType[] = [
   {
-    icon: React.createElement(BarChart, { size: 30 }),
-    label: "Analytics",
-    link: "/",
-  },
-  {
     icon: React.createElement(LucideListVideo, { size: 30 }),
     label: "My Courses",
     link: "/mycourses",
+  },
+  {
+    icon: React.createElement(BarChart, { size: 30 }),
+    label: "Analytics",
+    link: "/",
   },
 ];
 
