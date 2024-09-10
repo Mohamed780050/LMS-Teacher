@@ -1,5 +1,5 @@
 import { LayoutDashboard } from "lucide-react";
-import IconBage from "../IconBage";
+import IconBage from "../IconBadge";
 
 function CustomizeCourse() {
   return (
