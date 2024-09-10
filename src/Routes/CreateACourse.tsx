@@ -15,7 +15,7 @@ function CreateACourse() {
   const {
     handleSubmit,
     register,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<z.infer<typeof validate.MakeCourseName>>({
     resolver: zodResolver(validate.MakeCourseName),
   });
@@ -28,7 +28,7 @@ function CreateACourse() {
         ...values,
         AuthorId: data.info.id,
       });
-      dispatch(editCourse(response.data))
+      dispatch(editCourse(response.data));
       Navigate(`/mycourses/editeCourse/${response.data._id}`);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
@@ -52,6 +52,7 @@ function CreateACourse() {
             {...register("courseName")}
             placeholder="What is your course's name?"
           />
+          {errors.courseName && <p className="text-red-600">{errors.courseName.message}</p>}
           <div className="space-x-3">
             <Button disabled={isSubmitting} type="submit">
               Create
