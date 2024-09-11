@@ -3,13 +3,13 @@ import { X, Pencil } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { Input } from "../ui/input";
 import { useForm } from "react-hook-form";
 import updateCourseInfo from "@/config/UpdateCourseInfo";
 import { useParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import { z } from "zod";
+import { Textarea } from "../ui/textarea";
 
 function DescriptionForm() {
   const { id } = useParams();
@@ -49,7 +49,7 @@ function DescriptionForm() {
       </div>
       {edit ? (
         <form className="space-y-2" onSubmit={handleSubmit(updateIt)}>
-          <Input
+          <Textarea
             {...register("newDescription")}
             defaultValue={Description}
             className="rounded-none bg-white"
@@ -66,7 +66,15 @@ function DescriptionForm() {
           </div>
         </form>
       ) : (
-        <p className="font-medium text-sm">{Description}</p>
+        <p className="font-medium text-sm">
+          {Description ? (
+            Description
+          ) : (
+            <span className="text-slate-500 italic font-normal">
+              No Description
+            </span>
+          )}
+        </p>
       )}
     </div>
   );
