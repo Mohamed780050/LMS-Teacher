@@ -10,7 +10,7 @@ function CustomizeCourse() {
         <IconBage icon={LayoutDashboard} />
         <h2 className="text-xl">Customize your course</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <TitleForm />
         <DescriptionForm/>
       </div>
