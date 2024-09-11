@@ -1,6 +1,7 @@
 import { LayoutDashboard } from "lucide-react";
 import IconBage from "../IconBadge";
 import TitleForm from "./TitleForm";
+import DescriptionForm from "./DescriptionForm";
 
 function CustomizeCourse() {
   return (
@@ -11,6 +12,7 @@ function CustomizeCourse() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <TitleForm />
+        <DescriptionForm/>
       </div>
     </>
   );

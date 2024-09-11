@@ -11,16 +11,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import { z } from "zod";
 
-function TitleForm() {
+function DescriptionForm() {
   const { id } = useParams();
-  const { courseName } = useSelector(
+  const { Description } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
-  const { handleSubmit, register } = useForm<{ newCourseName: string }>({
-    resolver: zodResolver(validate.CourseNameUpdate),
+  const { handleSubmit, register } = useForm<{ newDescription: string }>({
+    resolver: zodResolver(validate.DescriptionUpdate),
   });
   const [edit, setEdit] = useState(false);
-  function updateIt(values: z.infer<typeof validate.CourseNameUpdate>) {
+  function updateIt(values: z.infer<typeof validate.DescriptionUpdate>) {
     updateCourseInfo({ id: `${id}`, values: values });
     console.log(values);
     setEdit(false);
@@ -28,7 +28,7 @@ function TitleForm() {
   return (
     <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Course Name</h2>
+        <h2 className="text-xl font-bold">Course Description</h2>
         {edit ? (
           <Button variant="ghost" className="cursor-default">
             <X
@@ -50,8 +50,8 @@ function TitleForm() {
       {edit ? (
         <form className="space-y-2" onSubmit={handleSubmit(updateIt)}>
           <Input
-            {...register("newCourseName")}
-            defaultValue={courseName}
+            {...register("newDescription")}
+            defaultValue={Description}
             className="rounded-none bg-white"
           />
           <div className="space-x-2">
@@ -66,9 +66,9 @@ function TitleForm() {
           </div>
         </form>
       ) : (
-        <p className="font-medium text-sm">{courseName}</p>
+        <p className="font-medium text-sm">{Description}</p>
       )}
     </div>
   );
 }
-export default TitleForm;
+export default DescriptionForm;

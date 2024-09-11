@@ -35,9 +35,13 @@ const MakeCourseName = z.object({
 const CourseNameUpdate = z.object({
   newCourseName: z.string().min(1, { message: "Field is empty" }),
 });
+const DescriptionUpdate = z.object({
+  newDescription: z.string().min(1, { message: "Field is empty" }),
+});
 export default {
   loginvalidation,
   signupValidation,
   MakeCourseName,
   CourseNameUpdate,
+  DescriptionUpdate,
 };
