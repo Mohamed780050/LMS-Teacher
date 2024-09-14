@@ -5,7 +5,7 @@ async function getPhotos() {
     const response = await axios.get(
       `https://api.unsplash.com/photos/random?client_id=${
         import.meta.env.VITE_UNSPLASH_ACCESS_KEY
-      }&count=2&&content_filter=high&orientation=landscape`
+      }&count=15&&content_filter=high&orientation=landscape`
     );
     console.log(response.data);
     return response.data;

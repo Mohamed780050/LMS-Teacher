@@ -11,7 +11,7 @@ function ImageTabs() {
         <TabsTrigger value="password">Unsplash</TabsTrigger>
       </TabsList>
       <TabsContent value="account">
-        <div className="w-full flex justify-center items-center border min-h-52 bg-white">
+        <div className="w-full flex justify-center items-center border min-h-60 bg-white">
           <Button variant="ghost">
             <Upload size={30} />
           </Button>

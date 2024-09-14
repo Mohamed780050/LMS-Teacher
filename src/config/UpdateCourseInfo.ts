@@ -5,7 +5,7 @@ async function updateCourseInfo({
   id,
   values,
 }: {
-  id: string;
+  id: string|undefined;
   values: { [key: string]: string | number | [] | string[] | number[] };
 }) {
   try {
