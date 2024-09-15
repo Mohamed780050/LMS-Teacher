@@ -10,13 +10,18 @@ import { useParams } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import validate from "@/validation/validate";
 import { z } from "zod";
+import Spiner from "../Spiner";
 
 function TitleForm() {
   const { id } = useParams();
   const { courseName } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
-  const { handleSubmit, register } = useForm<{ newCourseName: string }>({
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<{ newCourseName: string }>({
     resolver: zodResolver(validate.CourseNameUpdate),
   });
   const [edit, setEdit] = useState(false);
@@ -30,7 +35,11 @@ function TitleForm() {
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Name</h2>
         {edit ? (
-          <Button variant="ghost" className="cursor-default">
+          <Button
+            disabled={isSubmitting}
+            variant="ghost"
+            className="cursor-default"
+          >
             <X
               className="cursor-pointer duration-200 hover:text-red-700"
               onClick={() => setEdit(false)}
@@ -53,10 +62,14 @@ function TitleForm() {
             {...register("newCourseName")}
             defaultValue={courseName}
             className="rounded-none bg-white"
+            disabled={isSubmitting}
           />
           <div className="space-x-2">
-            <Button type="submit">save</Button>
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting ? <Spiner /> : "save"}
+            </Button>
             <Button
+              disabled={isSubmitting}
               variant="destructive"
               type="button"
               onClick={() => setEdit(false)}

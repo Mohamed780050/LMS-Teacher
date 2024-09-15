@@ -16,7 +16,11 @@ function DescriptionForm() {
   const { Description } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
-  const { handleSubmit, register } = useForm<{ newDescription: string }>({
+  const {
+    handleSubmit,
+    register,
+    formState: { isSubmitting },
+  } = useForm<{ newDescription: string }>({
     resolver: zodResolver(validate.DescriptionUpdate),
   });
   const [edit, setEdit] = useState(false);
@@ -30,7 +34,11 @@ function DescriptionForm() {
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Description</h2>
         {edit ? (
-          <Button variant="ghost" className="cursor-default">
+          <Button
+            disabled={isSubmitting}
+            variant="ghost"
+            className="cursor-default"
+          >
             <X
               className="cursor-pointer duration-200 hover:text-red-700"
               onClick={() => setEdit(false)}
@@ -50,13 +58,17 @@ function DescriptionForm() {
       {edit ? (
         <form className="space-y-2" onSubmit={handleSubmit(updateIt)}>
           <Textarea
+            disabled={isSubmitting}
             {...register("newDescription")}
             defaultValue={Description}
             className="rounded-none bg-white"
           />
           <div className="space-x-2">
-            <Button type="submit">save</Button>
+            <Button disabled={isSubmitting} type="submit">
+              save
+            </Button>
             <Button
+              disabled={isSubmitting}
               variant="destructive"
               type="button"
               onClick={() => setEdit(false)}
