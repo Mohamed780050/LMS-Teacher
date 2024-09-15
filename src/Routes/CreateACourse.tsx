@@ -22,11 +22,11 @@ function CreateACourse() {
 
   async function MakeACourse(values: z.infer<typeof validate.MakeCourseName>) {
     try {
-      const key = localStorage.getItem("data");
+      const key = localStorage.getItem("userInfo");
       const data = key ? JSON.parse(key) : null;
       const response = await Axios.post("/courses", {
         ...values,
-        AuthorId: data.info.id,
+        AuthorId: data.id,
       });
       dispatch(editCourse(response.data));
       Navigate(`/mycourses/editeCourse/${response.data._id}`);

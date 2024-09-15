@@ -13,9 +13,10 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import CreateACourse from "./CreateACourse";
 import Notfound from "@/components/Notfound";
 import EditeCourse from "./EditeCourse";
-const key = localStorage.getItem("data");
-const data = key ? JSON.parse(key) : null;
-const isAllowed = data !== null ? data.jwt : false;
+const data = document.cookie.split(";").find((value) => value.includes("jwt"))
+  ? document.cookie.split(";").find((value) => value.includes("jwt"))
+  : null;
+const isAllowed = data !== null ? true : false;
 const routes = createBrowserRouter(
   createRoutesFromElements(
     <>

@@ -10,6 +10,7 @@ import z from "zod";
 import Axios from "@/config/Axios";
 
 function Login() {
+  const date = new Date();
   const {
     handleSubmit,
     register,
@@ -19,8 +20,21 @@ function Login() {
   });
   async function SubmitIt(values: z.infer<typeof validate.loginvalidation>) {
     try {
+      date.setTime(date.getTime() + 1000 * 60 * 60 * 24 * 2);
       const response = await Axios.post("/auth", values);
-      localStorage.setItem("data", JSON.stringify(response.data));
+      localStorage.setItem("userInfo", JSON.stringify(response.data.info));
+      document.cookie =
+        "jwt" +
+        "=" +
+        response.data?.jwt +
+        ";" +
+        "expires=" +
+        date.toUTCString() +
+        ";" +
+        "path=/;";
+      console.log(
+        document.cookie.split(";").find((value) => value.includes("jwt"))
+      );
       window.location.reload();
     } catch (err) {
       console.log(err);

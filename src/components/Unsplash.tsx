@@ -3,6 +3,7 @@ import updateCourseInfo from "@/config/UpdateCourseInfo";
 import { unsplashObject } from "@/interfaces/interfaces";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import Spiner from "./Spiner";
 
 function Unsplash() {
   const { id } = useParams();
@@ -12,8 +13,8 @@ function Unsplash() {
   });
   return (
     <div className="w-full photoScroll h-60  p-3 overflow-y-scroll border bg-white">
-      {isLoading ? (
-        "Loading"
+      {true ? (
+        <Spiner />
       ) : (
         <ul className="grid grid-cols-2 gap-1.5">
           {data?.map((item: unsplashObject) => (
