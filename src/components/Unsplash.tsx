@@ -13,7 +13,7 @@ function Unsplash() {
   });
   return (
     <div className="w-full photoScroll h-60  p-3 overflow-y-scroll border bg-white">
-      {true ? (
+      {isLoading ? (
         <Spiner />
       ) : (
         <ul className="grid grid-cols-2 gap-1.5">
