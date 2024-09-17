@@ -3,6 +3,7 @@ import IconBage from "../IconBadge";
 import TitleForm from "./TitleForm";
 import DescriptionForm from "./DescriptionForm";
 import ImageSelector from "./ImageSelector";
+import Catagory from "./Catagory";
 
 function CustomizeCourse() {
   return (
@@ -15,6 +16,7 @@ function CustomizeCourse() {
         <TitleForm />
         <DescriptionForm />
         <ImageSelector />
+        <Catagory/>
       </div>
     </>
   );
