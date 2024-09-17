@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Check, ChevronsUpDown, Icon } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import {
   HandCoins,
   Cpu,

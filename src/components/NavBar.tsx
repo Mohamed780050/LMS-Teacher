@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
 import Sidebar from "./Sidebar";
+import ProfileDropMenu from "./ProfileDropMenu";
 function NavBar() {
   return (
     <>
@@ -14,7 +15,7 @@ function NavBar() {
           </SheetContent>
         </Sheet>
         <span></span>
-        <div>Info</div>
+        <ProfileDropMenu/>
       </nav>
     </>
   );
