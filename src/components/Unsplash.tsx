@@ -23,7 +23,7 @@ function Unsplash() {
                 onClick={() =>
                   updateCourseInfo({
                     id: id,
-                    values: { ImageURL: item.urls.thumb },
+                    values: { ImageURL: `${item.urls.thumb}&w=720` },
                   })
                 }
                 className="cursor-pointer w-full h-full"
