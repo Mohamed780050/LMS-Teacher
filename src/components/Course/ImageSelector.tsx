@@ -3,7 +3,7 @@ import ImageTabs from "../ImageTabs";
 import { RootState } from "@/Redux/store";
 import { useState } from "react";
 import { Button } from "../ui/button";
-import { Pencil, X, Image } from "lucide-react";
+import { Pencil, X, Image, PlusCircle } from "lucide-react";
 function ImageSelector() {
   const { ImageURL } = useSelector(
     (state: RootState) => state.editingCourse.Course
@@ -24,10 +24,17 @@ function ImageSelector() {
           </Button>
         ) : (
           <Button variant="ghost" className="cursor-default">
-            <Pencil
-              className="hover:text-sky-600 cursor-pointer"
-              onClick={() => setEdit(true)}
-            />
+            {ImageURL ? (
+              <Pencil
+                className="hover:text-sky-600 cursor-pointer"
+                onClick={() => setEdit(true)}
+              />
+            ) : (
+              <PlusCircle
+                className="hover:text-sky-600 cursor-pointer"
+                onClick={() => setEdit(true)}
+              />
+            )}
           </Button>
         )}
       </div>
@@ -38,8 +45,8 @@ function ImageSelector() {
           {ImageURL ? (
             <img src={ImageURL} alt="" />
           ) : (
-            <div className="w-full min-h-72 bg-white flex items-center justify-center text-slate-400">
-              <Image size={40} />
+            <div className="w-full border min-h-72 bg-white flex items-center justify-center text-slate-400">
+              <Image size={50} />
             </div>
           )}
         </>
