@@ -40,8 +40,12 @@ function Catagory() {
         </div>
       ) : (
         <p className="font-medium text-xl flex items-center">
-          {CatagoryItmes.filter((item) => item.value === catagory)[0].Icon}{" "}
-          {catagory}
+          {catagory && (
+            <>
+              {CatagoryItmes.filter((item) => item.value === catagory)[0]?.Icon}{" "}
+              {catagory}
+            </>
+          )}
         </p>
       )}
     </div>
