@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Spiner from "./Spiner";
 
-function Unsplash() {
+function Unsplash({ setEdit }: { setEdit: (v: boolean) => void }) {
   const { id } = useParams();
   const { data, isLoading } = useQuery({
     queryKey: [""],
@@ -20,12 +20,13 @@ function Unsplash() {
           {data?.map((item: unsplashObject) => (
             <li>
               <img
-                onClick={() =>
+                onClick={() => {
                   updateCourseInfo({
                     id: id,
                     values: { ImageURL: `${item.urls.thumb}&w=720` },
-                  })
-                }
+                  });
+                  setEdit(false);
+                }}
                 className="cursor-pointer w-full h-full"
                 src={item.urls.raw}
                 alt=""

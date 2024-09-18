@@ -39,7 +39,7 @@ function ImageSelector() {
         )}
       </div>
       {edit ? (
-        <ImageTabs />
+        <ImageTabs setEdit={setEdit}/>
       ) : (
         <>
           {ImageURL ? (

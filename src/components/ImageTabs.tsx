@@ -3,7 +3,7 @@ import { Upload } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Unsplash from "./Unsplash";
 
-function ImageTabs() {
+function ImageTabs({ setEdit }: { setEdit: (v: boolean) => void }) {
   return (
     <Tabs defaultValue="account">
       <TabsList className="grid w-full grid-cols-2">
@@ -18,7 +18,7 @@ function ImageTabs() {
         </div>
       </TabsContent>
       <TabsContent value="password">
-        <Unsplash />
+        <Unsplash setEdit={setEdit}/>
       </TabsContent>
     </Tabs>
   );
