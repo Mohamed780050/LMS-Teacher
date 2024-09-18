@@ -36,7 +36,7 @@ const routes = createBrowserRouter(
           path="mycourses"
           element={
             <ProtectedRoutes
-              redirctedPath="Authentaction/login"
+              redirctedPath="/Authentaction/login"
               isAllowed={isAllowed}
             >
               <Outlet />

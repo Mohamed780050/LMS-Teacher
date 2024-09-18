@@ -16,7 +16,6 @@ function ProfileDropMenu() {
       <PopoverContent className="w-80">
         <div className="grid gap-4">
           <div className="flex items-center space-x-1">
-            {/* <Settings /> */}
             <h4 className="font-medium text-xl leading-none">Profile</h4>
           </div>
           <div className="grid gap-2">
@@ -37,6 +36,10 @@ function ProfileDropMenu() {
             <Button
               variant="ghost"
               className="text-lg w-full justify-start py-6"
+              onClick={() => {
+                document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                window.location.reload();
+              }}
             >
               <LogOut className="mr-1" />
               Logout
