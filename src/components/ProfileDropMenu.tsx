@@ -4,8 +4,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { UserRound, ImagePlus, LogOut, Info } from "lucide-react";
+import { changeMood } from "@/Redux/darkmood";
+import { RootState } from "@/Redux/store";
+import { UserRound, ImagePlus, LogOut, Info, Moon, Sun } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 function ProfileDropMenu() {
+  const { dark } = useSelector((state: RootState) => state.mood);
+  const dispatch = useDispatch();
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -13,7 +18,7 @@ function ProfileDropMenu() {
           <UserRound size={30} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80">
+      <PopoverContent className={`w-80 ${dark ? "bg-black text-white" : ""}`}>
         <div className="grid gap-4">
           <div className="flex items-center space-x-1">
             <h4 className="font-medium text-xl leading-none">Profile</h4>
@@ -37,7 +42,21 @@ function ProfileDropMenu() {
               variant="ghost"
               className="text-lg w-full justify-start py-6"
               onClick={() => {
-                document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                const root = document.getElementById("root");
+                root?.classList.toggle("dark");
+                dispatch(changeMood(!dark));
+              }}
+            >
+              {dark ? <Sun className="mr-1" /> : <Moon className="mr-1" />}
+              Change Theme
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="text-lg w-full justify-start py-6"
+              onClick={() => {
+                document.cookie =
+                  "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
                 window.location.reload();
               }}
             >

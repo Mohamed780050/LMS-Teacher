@@ -3,7 +3,7 @@ import Sidebar from "@/components/Sidebar";
 import { Outlet } from "react-router-dom";
 function Main() {
   return (
-    <div className="h-full select-none">
+    <div className="h-full select-none dark:bg-black dark:text-white">
       <header className="h-[80px] w-full border-b shadow-sm fixed inset-0 z-50">
         <NavBar />
       </header>

@@ -1,15 +1,18 @@
+import { useSelector } from "react-redux";
 import Logo from "./Logo";
 import SidebarLinks from "./SidebarLinks";
+import { RootState } from "@/Redux/store";
 
 function Sidebar() {
+  const {dark} = useSelector((state:RootState) => state.mood)
   return (
-    <div className="h-full border-r flex flex-col bg-white shadow-sm">
+    <div
+      className={`h-full border-r ${dark ? "bg-black text-white" : ""} flex flex-col bg-white shadow-sm`}
+    >
       <div className="p-6">
-        <Logo/>
+        <Logo />
       </div>
-      <div className="flex flex-col w-full">
-        <SidebarLinks />
-      </div>
+      <SidebarLinks />
     </div>
   );
 }

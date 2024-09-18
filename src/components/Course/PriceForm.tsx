@@ -58,6 +58,7 @@ function PriceForm() {
         <form className="space-y-2" onSubmit={handleSubmit(updateIt)}>
           <Input
             type="number"
+            step="any"
             {...register("newPrice", {
               setValueAs: (v) => (v === "" ? 0 : +v),
             })}
