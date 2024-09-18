@@ -26,7 +26,7 @@ export interface CourseInfo {
     normal: string;
     full: string;
   };
-  catagory: { Icon: ReactNode | ""; Name: string }[];
+  catagory:string;
   AuthorId: string;
   completed: number;
   total: 5;

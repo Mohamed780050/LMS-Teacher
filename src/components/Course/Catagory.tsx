@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import { ComboboxDemo } from "../Combobox";
-
+import data from "@/data/data";
 function Catagory() {
   const { catagory } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
   const [edit, setEdit] = useState(false);
+  const { CatagoryItmes } = data;
 
   return (
     <div className="boder bg-slate-100 rounded-md p-4 space-y-2">
@@ -35,11 +36,12 @@ function Catagory() {
       </div>
       {edit ? (
         <div className="space-y-2">
-          <ComboboxDemo setEdit={setEdit}/>
+          <ComboboxDemo setEdit={setEdit} />
         </div>
       ) : (
         <p className="font-medium text-xl flex items-center">
-          {catagory[0]?.Icon} {catagory[0]?.Name}
+          {CatagoryItmes.filter((item) => item.value === catagory)[0].Icon}{" "}
+          {catagory}
         </p>
       )}
     </div>

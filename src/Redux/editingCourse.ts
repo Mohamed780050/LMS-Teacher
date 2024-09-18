@@ -1,6 +1,5 @@
 import { CourseInfo } from "@/interfaces/interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ReactNode } from "react";
 
 const initialState: { Course: CourseInfo } = {
   Course: {
@@ -14,7 +13,7 @@ const initialState: { Course: CourseInfo } = {
       normal: "",
       full: "",
     },
-    catagory: [{ Icon: "", Name: "" }],
+    catagory: "",
     AuthorId: "",
     completed: 0,
     total: 5,
@@ -29,7 +28,7 @@ export const editingCourse = createSlice({
     },
     editeCatagory: (
       state,
-      action: PayloadAction<{ Icon: ReactNode; Name: string }[]>
+      action: PayloadAction<string>
     ) => {
       state.Course.catagory = action.payload;
     },

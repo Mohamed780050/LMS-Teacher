@@ -1,12 +1,5 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-import {
-  HandCoins,
-  Cpu,
-  BicepsFlexed,
-  Camera,
-  PencilRuler,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,34 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editeCatagory } from "@/Redux/editingCourse";
 import { RootState } from "@/Redux/store";
 import updateCourseInfo from "@/config/UpdateCourseInfo";
-
-const frameworks = [
-  {
-    Icon: React.createElement(HandCoins, { size: 20, className: "mr-1" }),
-    value: "Accounting",
-    label: "Accounting",
-  },
-  {
-    Icon: React.createElement(Cpu, { size: 20, className: "mr-1" }),
-    value: "Computer Science",
-    label: "Computer Science",
-  },
-  {
-    Icon: React.createElement(BicepsFlexed, { size: 20, className: "mr-1" }),
-    value: "Fitness",
-    label: "Fitness",
-  },
-  {
-    Icon: React.createElement(Camera, { size: 20, className: "mr-1" }),
-    value: "Photography",
-    label: "Photography",
-  },
-  {
-    Icon: React.createElement(PencilRuler, { size: 20, className: "mr-1" }),
-    value: "Engineering",
-    label: "Engineering",
-  },
-];
+import data from "../data/data";
 
 export function ComboboxDemo({
   setEdit,
@@ -61,7 +27,7 @@ export function ComboboxDemo({
   setEdit: (value: boolean) => void;
 }) {
   const [open, setOpen] = React.useState(false);
-  // const [value, setValue] = React.useState("");
+  const { CatagoryItmes } = data;
   const dispatch = useDispatch();
   const { catagory, _id } = useSelector(
     (state: RootState) => state.editingCourse.Course
@@ -75,10 +41,9 @@ export function ComboboxDemo({
           aria-expanded={open}
           className="w-full text-lg py-6 justify-between"
         >
-          {catagory[0].Name
-            ? frameworks.find(
-                (framework) => framework.value === catagory[0]?.Name
-              )?.label
+          {catagory
+            ? CatagoryItmes.find((framework) => framework.value === catagory)
+                ?.label
             : "Select framework..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -89,38 +54,33 @@ export function ComboboxDemo({
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {CatagoryItmes.map((catagoryItme) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={catagoryItme.value}
+                  value={catagoryItme.value}
                   onSelect={(currentValue) => {
-                    dispatch(
-                      editeCatagory([
-                        { Icon: framework.Icon, Name: currentValue },
-                      ])
-                    );
-                    setOpen(false);
-                    setEdit(false);
+                    dispatch(editeCatagory(currentValue));
                     updateCourseInfo({
                       id: _id,
                       values: {
-                        Icon: framework.Icon,
-                        Name: framework.value,
+                        catagory: currentValue,
                       },
                     });
+                    setOpen(false);
+                    setEdit(false);
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      catagory[0]?.Name === framework.value
+                      catagory === catagoryItme.value
                         ? "opacity-100"
                         : "opacity-0"
                     )}
                   />
 
-                  {framework.Icon}
-                  {framework.label}
+                  {catagoryItme.Icon}
+                  {catagoryItme.label}
                 </CommandItem>
               ))}
             </CommandGroup>
