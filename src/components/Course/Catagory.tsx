@@ -39,14 +39,16 @@ function Catagory() {
           <ComboboxDemo setEdit={setEdit} />
         </div>
       ) : (
-        <p className="font-medium text-xl flex items-center">
-          {catagory && (
-            <>
+        <>
+          {catagory ? (
+            <p className="font-medium text-xl flex items-center">
               {CatagoryItmes.filter((item) => item.value === catagory)[0]?.Icon}{" "}
               {catagory}
-            </>
+            </p>
+          ) : (
+            <p className="text-slate-500 italic font-normal">No Catagory</p>
           )}
-        </p>
+        </>
       )}
     </div>
   );

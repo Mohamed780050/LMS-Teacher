@@ -6,7 +6,15 @@ async function updateCourseInfo({
   values,
 }: {
   id: string | undefined;
-  values: { [key: string]: string | number | [] | string[] | number[] };
+  values: {
+    [key: string]:
+      | string
+      | number
+      | []
+      | string[]
+      | number[]
+      | { filename: string; data: string }[];
+  };
 }) {
   try {
     const response = await Axios.put(`/courses/${id}`, values);

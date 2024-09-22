@@ -26,10 +26,14 @@ export interface CourseInfo {
     normal: string;
     full: string;
   };
-  catagory:string;
+  catagory: string;
   AuthorId: string;
   completed: number;
   total: 5;
+  Attachments: {
+    filename: string;
+    link: string;
+  }[];
 }
 export interface unsplashObject {
   urls: {

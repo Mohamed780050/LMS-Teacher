@@ -17,9 +17,10 @@ function Unsplash({ setEdit }: { setEdit: (v: boolean) => void }) {
         <Spiner />
       ) : (
         <ul className="grid grid-cols-2 gap-1.5">
-          {data?.map((item: unsplashObject) => (
-            <li>
+          {data?.map((item: unsplashObject, index: number) => (
+            <li key={index * 304.7}>
               <img
+                loading="lazy"
                 onClick={() => {
                   updateCourseInfo({
                     id: id,

@@ -1,4 +1,9 @@
-import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
+import {
+  CircleDollarSign,
+  File,
+  LayoutDashboard,
+  ListChecks,
+} from "lucide-react";
 import IconBage from "../IconBadge";
 import TitleForm from "./TitleForm";
 import DescriptionForm from "./DescriptionForm";
@@ -10,6 +15,7 @@ import { RootState } from "@/Redux/store";
 import getAndSetCourseInfo from "@/config/getCourse";
 import CourseChatpers from "./CourseChatpers";
 import PriceForm from "./PriceForm";
+import CourseAttachment from "./CourseAtatchment";
 
 function CustomizeCourse() {
   const { id } = useParams();
@@ -31,16 +37,24 @@ function CustomizeCourse() {
           <Catagory />
         </div>
         <div className="space-y-6">
+          {/* Course Chapter */}
           <div className="flex items-center space-x-1">
             <IconBage icon={ListChecks} />
             <h2 className="text-xl">Course chapters</h2>
           </div>
           <CourseChatpers />
+          {/* Course Price */}
           <div className="flex items-center space-x-1">
             <IconBage icon={CircleDollarSign} />
             <h2 className="text-xl">Sell your course</h2>
           </div>
           <PriceForm />
+          {/* Course Resourses and Attachment */}
+          <div className="flex items-center space-x-1">
+            <IconBage icon={File} />
+            <h2 className="text-xl">Course Resourses</h2>
+          </div>
+          <CourseAttachment />
         </div>
       </div>
     </>
