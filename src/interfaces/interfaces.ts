@@ -31,8 +31,9 @@ export interface CourseInfo {
   completed: number;
   total: 5;
   Attachments: {
+    id:string;
     filename: string;
-    link: string;
+    data: string;
   }[];
 }
 export interface unsplashObject {

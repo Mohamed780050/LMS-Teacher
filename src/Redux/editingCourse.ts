@@ -17,7 +17,7 @@ const initialState: { Course: CourseInfo } = {
     AuthorId: "",
     completed: 0,
     total: 5,
-    Attachment: [],
+    Attachments: [],
   },
 };
 export const editingCourse = createSlice({
@@ -32,12 +32,13 @@ export const editingCourse = createSlice({
     },
     editAttachment: (
       state,
-      action: PayloadAction<{ fileName: string; link: string }[]>
+      action: PayloadAction<{ id: string; filename: string; data: string }[]>
     ) => {
-      state.Course.Attachment = action.payload;
+      state.Course.Attachments = action.payload;
     },
   },
 });
 
-export const { editCourse, editeCatagory } = editingCourse.actions;
+export const { editCourse, editeCatagory, editAttachment } =
+  editingCourse.actions;
 export default editingCourse.reducer;

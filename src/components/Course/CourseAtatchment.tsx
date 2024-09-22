@@ -1,11 +1,12 @@
 import { useState, useRef, ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { File, Pencil, X } from "lucide-react";
+import { File } from "lucide-react";
 import { Trash2, PlusCircle } from "lucide-react";
 import updateCourseInfo from "@/config/UpdateCourseInfo";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
+import generateKey from "@/config/idGenerator";
 
 export default function CourseAttachment() {
   const [progressBar, setProgressBar] = useState(0);
@@ -26,8 +27,13 @@ export default function CourseAttachment() {
             id: _id,
             values: {
               Attachments: [
-                { filename: `${file.name}`, data: `${e.target?.result}` },
-              ],
+                Attachments,
+                {
+                  id: generateKey(),
+                  filename: `${file.name}`,
+                  data: `${e.target?.result}`,
+                },
+              ].flat(),
             },
           });
           setDownloadLink(`${e.target?.result}`);
@@ -46,6 +52,11 @@ export default function CourseAttachment() {
       });
     }
   }
+
+  async function handleDelete(id:string) {
+    console.log(id);
+  }
+
   return (
     <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
@@ -76,21 +87,25 @@ export default function CourseAttachment() {
           download
         </a>
         {Attachments ? (
-          <ul>
+          <ul className="space-y-1">
             {Attachments.map((attachment, index) => (
               <li
                 key={index * 255.7}
-                className="bg-sky-100 border-sky-200 border text-sky-700 rounded-sm flex items-center p-3 justify-between"
+                className="bg-white overflow-hidden relative z-[1] border-sky-200 border text-sky-70 rounded-sm flex items-center p-3 justify-between"
               >
+                <span
+                  className={`absolute w-[100%] h-full block myloader bg-sky-100 -z-[1] right-0`}
+                ></span>
                 <div className="flex items-center space-x-1">
                   <File />
                   <p className="text-xs sm:text-lg">
-                    {attachment.filename.length > 25
+                    {/* {attachment.filename.length > 25
                       ? `${attachment.filename.slice(0, 26)}...`
-                      : attachment.filename}
+                      : attachment.filename} */}
+                      {console.log(attachment)}
                   </p>
                 </div>
-                <Button variant="destructive">
+                <Button variant="destructive" onClick={() => handleDelete(attachment.id)}>
                   <Trash2 size={20} /> Delete
                 </Button>
               </li>
