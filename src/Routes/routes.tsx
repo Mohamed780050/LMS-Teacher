@@ -5,14 +5,14 @@ import {
   Outlet,
   Route,
 } from "react-router-dom";
-import Home from "./Home";
-import Courses from "./Courses";
-import SignUp from "./SignUp";
-import Login from "./Login";
-import ProtectedRoutes from "./ProtectedRoutes";
-import CreateACourse from "./CreateACourse";
+import Home from "./Pages/Home";
+import Courses from "./Pages/Courses";
+import SignUp from "./Pages/SignUp";
+import Login from "./Pages/Login";
+import ProtectedRoutes from "./Pages/ProtectedRoutes";
+import CreateACourse from "./Pages/CreateACourse";
 import Notfound from "@/components/Notfound";
-import EditeCourse from "./EditeCourse";
+import EditeCourse from "./Pages/EditeCourse";
 const data = document.cookie.split(";").find((value) => value.includes("jwt"))
   ? document.cookie.split(";").find((value) => value.includes("jwt"))
   : null;
