@@ -31,7 +31,7 @@ export interface CourseInfo {
   completed: number;
   total: 5;
   Attachments: {
-    id:string;
+    id: string;
     filename: string;
     data: string;
   }[];
@@ -45,4 +45,17 @@ export interface unsplashObject {
     small_s3: string;
     thumb: string;
   };
+}
+export interface CourseChapters {
+  _id: string;
+  cousrsID: string;
+  ownerID: string;
+  isFree: boolean;
+  isPublished: boolean;
+  videoURL: string;
+  title: string;
+  description: string;
+  position: number;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -1,11 +1,11 @@
 import { Upload } from "lucide-react";
 import { Button } from "./ui/button";
 import { ChangeEvent, useRef } from "react";
-import Axios from "@/config/Axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
+import updateCourseInfo from "@/config/UpdateCourseInfo";
 
-function ImageUploader() {
+function ImageUploader({ setEdit }: { setEdit: (v: boolean) => void }) {
   const { _id } = useSelector((state: RootState) => state.editingCourse.Course);
   const imageFilesInput = useRef<HTMLInputElement>(null);
   async function handleData(e: ChangeEvent<HTMLInputElement>) {
@@ -14,13 +14,11 @@ function ImageUploader() {
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.onloadend = async (e) => {
-          await Axios.put(
-            `/courses/${_id}`,
-            { ImageURL: `${e.target?.result}` },
-            {
-              onUploadProgress: (e) => console.log(e.progress),
-            }
-          );
+          await updateCourseInfo({
+            id: _id,
+            values: { ImageURL: `${e.target?.result}` },
+          });
+          setEdit(false);
         };
         reader.readAsDataURL(file);
       }

@@ -11,7 +11,7 @@ function ImageTabs({ setEdit }: { setEdit: (v: boolean) => void }) {
       </TabsList>
       <TabsContent value="account">
         <div className="w-full flex justify-center items-center border min-h-60 bg-white">
-          <ImageUploader />
+          <ImageUploader setEdit={setEdit}/>
         </div>
       </TabsContent>
       <TabsContent value="password">
