@@ -14,7 +14,9 @@ function Unsplash({ setEdit }: { setEdit: (v: boolean) => void }) {
   return (
     <div className="w-full photoScroll h-60  p-3 overflow-y-scroll border bg-white">
       {isLoading ? (
-        <Spiner />
+        <span className="absolute  flex items-center justify-center w-full h-full top-0 left-0 rounded-sm bg-slate-400/50 ">
+          <Spiner />
+        </span>
       ) : (
         <ul className="grid grid-cols-2 gap-1.5">
           {data?.map((item: unsplashObject, index: number) => (

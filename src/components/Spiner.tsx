@@ -1,8 +1,8 @@
 function Spiner() {
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex opacity-100 items-center justify-center">
       <svg
-        className="animate-spin -ml-1 mr-3 h-6 w-6 text-sky-600"
+        className="animate-spin -ml-1 mr-3 h-10 w-10 text-sky-600"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
