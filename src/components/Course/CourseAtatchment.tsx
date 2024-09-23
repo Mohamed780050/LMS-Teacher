@@ -2,15 +2,18 @@ import { useState, useRef, ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { File } from "lucide-react";
-import { Trash2, PlusCircle } from "lucide-react";
-import updateCourseInfo from "@/config/UpdateCourseInfo";
-import { useSelector } from "react-redux";
+import { PlusCircle } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import generateKey from "@/config/idGenerator";
+import AttachmentBody from "./AttachmentBody";
+import { editAttachment } from "@/Redux/editingCourse";
+import Axios from "@/config/Axios";
 
 export default function CourseAttachment() {
   const [progressBar, setProgressBar] = useState(0);
   const [downloadLink, setDownloadLink] = useState("");
+  const dispatch = useDispatch();
   const { _id, Attachments } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
@@ -20,40 +23,38 @@ export default function CourseAttachment() {
     const Targets = e.target.files;
     if (Targets) {
       const files = Array.from(Targets);
-      files.map((file) => {
+      files.map(async (file) => {
         const reader = new FileReader();
         reader.onload = async function (e) {
-          await updateCourseInfo({
-            id: _id,
-            values: {
-              Attachments: [
-                Attachments,
-                {
-                  id: generateKey(),
-                  filename: `${file.name}`,
-                  data: `${e.target?.result}`,
-                },
-              ].flat(),
-            },
-          });
+          dispatch(
+            editAttachment([
+              {
+                id: generateKey(),
+                filename: `${file.name}`,
+                data: `${e.target?.result}`,
+              },
+            ])
+          );
           setDownloadLink(`${e.target?.result}`);
-          console.log(Attachments);
-        };
-        reader.onprogress = function (e) {
-          if (e.lengthComputable) {
-            const persent = (e.loaded / e.total) * 100;
-            setProgressBar(persent);
-          }
-        };
-        reader.onloadend = function () {
-          setProgressBar(100);
         };
         reader.readAsDataURL(file);
       });
+      await Axios.put(
+        `/courses/${_id}`,
+        { Attachments: Attachments },
+        {
+          onUploadProgress(e) {
+            console.log(e.upload);
+            if (e.progress) {
+              setProgressBar(e.progress * 100);
+            }
+          },
+        }
+      );
     }
   }
 
-  async function handleDelete(id:string) {
+  async function handleDelete(id: string) {
     console.log(id);
   }
 
@@ -86,34 +87,7 @@ export default function CourseAttachment() {
         <a href={downloadLink} download={"pdfFile"}>
           download
         </a>
-        {Attachments ? (
-          <ul className="space-y-1">
-            {Attachments.map((attachment, index) => (
-              <li
-                key={index * 255.7}
-                className="bg-white overflow-hidden relative z-[1] border-sky-200 border text-sky-70 rounded-sm flex items-center p-3 justify-between"
-              >
-                <span
-                  className={`absolute w-[100%] h-full block myloader bg-sky-100 -z-[1] right-0`}
-                ></span>
-                <div className="flex items-center space-x-1">
-                  <File />
-                  <p className="text-xs sm:text-lg">
-                    {/* {attachment.filename.length > 25
-                      ? `${attachment.filename.slice(0, 26)}...`
-                      : attachment.filename} */}
-                      {console.log(attachment)}
-                  </p>
-                </div>
-                <Button variant="destructive" onClick={() => handleDelete(attachment.id)}>
-                  <Trash2 size={20} /> Delete
-                </Button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No Attachments</p>
-        )}
+        <AttachmentBody progressBar={progressBar} />
       </div>
       {/* {edit ? (
         <div>
