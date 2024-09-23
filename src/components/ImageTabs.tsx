@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Upload } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Unsplash from "./Unsplash";
+import ImageUploader from "./ImageUploader";
 
 function ImageTabs({ setEdit }: { setEdit: (v: boolean) => void }) {
   return (
@@ -12,13 +11,11 @@ function ImageTabs({ setEdit }: { setEdit: (v: boolean) => void }) {
       </TabsList>
       <TabsContent value="account">
         <div className="w-full flex justify-center items-center border min-h-60 bg-white">
-          <Button variant="ghost">
-            <Upload size={30} />
-          </Button>
+          <ImageUploader />
         </div>
       </TabsContent>
       <TabsContent value="password">
-        <Unsplash setEdit={setEdit}/>
+        <Unsplash setEdit={setEdit} />
       </TabsContent>
     </Tabs>
   );
