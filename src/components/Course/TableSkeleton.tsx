@@ -10,7 +10,7 @@ import {
 import { Skeleton } from "../ui/skeleton";
 function TableSkeleton() {
   return (
-    <Table className="border">
+    <Table className="border rounded-sm">
       <TableCaption>A list of popular online courses</TableCaption>
       <TableHeader>
         <TableRow>

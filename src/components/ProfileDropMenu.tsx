@@ -24,6 +24,7 @@ function ProfileDropMenu() {
         </Button>
       </PopoverTrigger>
       <PopoverContent
+      style={{backgroundColor:`${darkMood ? `${bgColor}` : ""}`}}
         className={`w-80 ${darkMood ? `bg-${bgColor} text-white` : ""}`}
       >
         <div className="grid gap-4">

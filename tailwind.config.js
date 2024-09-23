@@ -1,12 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
-	content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      container: {
+        center: true, // Centers the container by default
+        padding: "1rem", // Adds padding to the container
+        screens: {
+          sm: "100%", // Custom width for small screens
+          md: "768px", // Medium screens
+          lg: "1024px", // Large screens
+          xl: "1280px", // Extra large screens
+        },
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

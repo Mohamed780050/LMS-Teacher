@@ -10,14 +10,20 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import Axios from "@/config/Axios";
-import { Star } from "lucide-react";
+import { Star,Settings } from "lucide-react";
 import { CourseInfo } from "@/interfaces/interfaces";
 import TableSkeleton from "./TableSkeleton";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { editCourse } from "@/Redux/editingCourse";
+import data from "@/data/data";
+import { Button } from "../ui/button";
 
+const CatagoryItmes = data.CatagoryItmes;
 export default function CourseTable() {
   const key = localStorage.getItem("userInfo");
   const userInfo = key ? JSON.parse(key) : null;
+  const dispatch = useDispatch();
   const { data, isLoading } = useQuery({
     queryKey: [""],
     queryFn: getMyCourses,
@@ -38,7 +44,7 @@ export default function CourseTable() {
         <TableSkeleton />
       ) : (
         <div className="container mx-auto py-10">
-          <Table className="border">
+          <Table className="border rounded-sm">
             <TableCaption>
               {mycousres.length
                 ? "A list of your online courses"
@@ -46,25 +52,38 @@ export default function CourseTable() {
             </TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[300px]">Course Name</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead className="text-right">Students</TableHead>
-                <TableHead className="text-right">Rating</TableHead>
+                <TableHead className="min-w-[230px] border-r">
+                  Course Name
+                </TableHead>
+                <TableHead className="border-r">Category</TableHead>
+                <TableHead className="border-r">Students</TableHead>
+                <TableHead className="border-r">Rating</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {mycousres.length ? (
                 data.map((course: CourseInfo) => (
                   <TableRow key={course.courseName}>
-                    <TableCell className="font-medium">
-                      <Link to={`editeCourse/${course._id}`}>
+                    <TableCell className="font-medium border-r flex items-center justify-between">
+                      <Link
+                        to={`editeCourse/${course._id}`}
+                        onClick={() => dispatch(editCourse(course))}
+                      >
                         {course.courseName}
                       </Link>
+                      <Button className="flex items-center text-center justify-center" variant="outline" size="icon">
+                        <Settings size={17}/>
+                      </Button>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary">{course.catagory}</Badge>
+                    <TableCell className="border-r">
+                      <Badge variant="secondary">
+                        {CatagoryItmes.map((item) => {
+                          if (item.value === course.catagory) return item.Icon;
+                        })}{" "}
+                        {course.catagory}
+                      </Badge>
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-right border-r">
                       {/* {course.students.toLocaleString()} */}
                     </TableCell>
                     <TableCell className="text-right">
