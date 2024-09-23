@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import passwordLength from "./passwordLength";
 import editingCourse from "./editingCourse";
-import mood from "./darkmood"
+import global from "./globla";
 // ...
 
 export const store = configureStore({
   reducer: {
     passwordLength: passwordLength,
     editingCourse: editingCourse,
-    mood:mood
+    global: global,
   },
 });
 

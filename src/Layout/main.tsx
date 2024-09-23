@@ -1,16 +1,22 @@
 import NavBar from "@/components/NavBar";
 import Sidebar from "@/components/Sidebar";
+import { RootState } from "@/Redux/store";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 function Main() {
+  const { darkMood, bgColor } = useSelector((state: RootState) => state.global);
   return (
-    <div className="h-full select-none dark:bg-black dark:text-white">
+    <div
+      style={{ backgroundColor: `${darkMood ? `${bgColor}` : ""}` }}
+      className={`h-full select-none  dark:text-white`}
+    >
       <header className="h-[80px] w-full border-b shadow-sm fixed inset-0 z-50">
         <NavBar />
       </header>
-      <div className="hidden md:flex h-full w-56 flex-col border-r shadow fixed inset-y-0 left-0 z-50">
-        <Sidebar></Sidebar>
+      <div className="hidden md:flex h-full  w-56 flex-col border-r shadow fixed inset-y-0 left-0 z-50">
+        <Sidebar />
       </div>
-      <main className="md:pl-56 pt-[80px] h-screen">
+      <main className="md:pl-56 pt-[80px] min-h-screen">
         <Outlet />
       </main>
     </div>

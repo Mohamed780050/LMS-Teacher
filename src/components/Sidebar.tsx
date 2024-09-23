@@ -4,10 +4,12 @@ import SidebarLinks from "./SidebarLinks";
 import { RootState } from "@/Redux/store";
 
 function Sidebar() {
-  const {dark} = useSelector((state:RootState) => state.mood)
+  const { darkMood, bgColor } = useSelector((state: RootState) => state.global);
   return (
     <div
-      className={`h-full border-r ${dark ? "bg-black text-white" : ""} flex flex-col bg-white shadow-sm`}
+      className={`h-full border-r ${
+        darkMood ? `bg-${bgColor} text-white` : "bg-white"
+      } flex flex-col  shadow-sm`}
     >
       <div className="p-6">
         <Logo />

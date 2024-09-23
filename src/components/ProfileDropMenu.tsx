@@ -4,21 +4,28 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { changeMood } from "@/Redux/darkmood";
+import { changeMood } from "@/Redux/globla";
 import { RootState } from "@/Redux/store";
 import { UserRound, ImagePlus, LogOut, Info, Moon, Sun } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 function ProfileDropMenu() {
-  const { dark } = useSelector((state: RootState) => state.mood);
+  const { darkMood, bgColor } = useSelector((state: RootState) => state.global);
   const dispatch = useDispatch();
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="rounded-full w-16 h-16">
+        <Button
+          variant="outline"
+          className={`border rounded-full w-16 h-16 ${
+            darkMood ? `bg-${bgColor} border-slate-500` : ""
+          }`}
+        >
           <UserRound size={30} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className={`w-80 ${dark ? "bg-black text-white" : ""}`}>
+      <PopoverContent
+        className={`w-80 ${darkMood ? `bg-${bgColor} text-white` : ""}`}
+      >
         <div className="grid gap-4">
           <div className="flex items-center space-x-1">
             <h4 className="font-medium text-xl leading-none">Profile</h4>
@@ -44,10 +51,10 @@ function ProfileDropMenu() {
               onClick={() => {
                 const root = document.getElementById("root");
                 root?.classList.toggle("dark");
-                dispatch(changeMood(!dark));
+                dispatch(changeMood());
               }}
             >
-              {dark ? <Sun className="mr-1" /> : <Moon className="mr-1" />}
+              {darkMood ? <Sun className="mr-1" /> : <Moon className="mr-1" />}
               Change Theme
             </Button>
 
