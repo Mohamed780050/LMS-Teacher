@@ -27,7 +27,6 @@ function TitleForm() {
   const [edit, setEdit] = useState(false);
   function updateIt(values: z.infer<typeof validate.CourseNameUpdate>) {
     updateCourseInfo({ id: `${id}`, values: values });
-    console.log(values);
     setEdit(false);
   }
   return (

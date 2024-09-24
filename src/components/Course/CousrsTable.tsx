@@ -10,7 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import Axios from "@/config/Axios";
-import { Star,Settings } from "lucide-react";
+import { Star, Settings } from "lucide-react";
 import { CourseInfo } from "@/interfaces/interfaces";
 import TableSkeleton from "./TableSkeleton";
 import { Link } from "react-router-dom";
@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { editCourse } from "@/Redux/editingCourse";
 import data from "@/data/data";
 import { Button } from "../ui/button";
+import { PopoverCom } from "./DrobCourseSetting";
 
 const CatagoryItmes = data.CatagoryItmes;
 export default function CourseTable() {
@@ -71,9 +72,9 @@ export default function CourseTable() {
                       >
                         {course.courseName}
                       </Link>
-                      <Button className="flex items-center text-center justify-center" variant="outline" size="icon">
-                        <Settings size={17}/>
-                      </Button>
+                      <PopoverCom>
+                        <Settings size={17} />
+                      </PopoverCom>
                     </TableCell>
                     <TableCell className="border-r">
                       <Badge variant="secondary">
