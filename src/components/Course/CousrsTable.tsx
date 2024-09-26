@@ -14,19 +14,20 @@ import { Star, Settings } from "lucide-react";
 import { CourseInfo } from "@/interfaces/interfaces";
 import TableSkeleton from "./TableSkeleton";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editCourse } from "@/Redux/editingCourse";
 import data from "@/data/data";
-import { Button } from "../ui/button";
 import { PopoverCom } from "./DrobCourseSetting";
+import { RootState } from "@/Redux/store";
 
 const CatagoryItmes = data.CatagoryItmes;
 export default function CourseTable() {
+  const { reFetcher } = useSelector((state: RootState) => state.global);
   const key = localStorage.getItem("userInfo");
   const userInfo = key ? JSON.parse(key) : null;
   const dispatch = useDispatch();
   const { data, isLoading } = useQuery({
-    queryKey: [""],
+    queryKey: [`${reFetcher}`],
     queryFn: getMyCourses,
   });
   async function getMyCourses() {
@@ -72,7 +73,7 @@ export default function CourseTable() {
                       >
                         {course.courseName}
                       </Link>
-                      <PopoverCom>
+                      <PopoverCom id={course._id}>
                         <Settings size={17} />
                       </PopoverCom>
                     </TableCell>

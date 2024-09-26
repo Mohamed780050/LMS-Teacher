@@ -59,3 +59,11 @@ export interface CourseChapters {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface AlertProps {
+  children: ReactNode;
+  title?: string;
+  massage?: string;
+  okbtn?: string;
+  id: string;
+}

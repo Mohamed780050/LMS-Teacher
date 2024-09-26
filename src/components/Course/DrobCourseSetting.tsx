@@ -8,11 +8,19 @@ import { Settings, Trash2 } from "lucide-react";
 import { ReactNode } from "react";
 import { AlertDialogCom } from "../AlertDailogCom";
 
-export function PopoverCom({ children }: { children: ReactNode }) {
+export function PopoverCom({
+  children,
+  id,
+}: {
+  children: ReactNode;
+  id: string;
+}) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="icon">{children}</Button>
+        <Button variant="outline" size="icon">
+          {children}
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="w-56">
         <div className="grid gap-4">
@@ -27,7 +35,7 @@ export function PopoverCom({ children }: { children: ReactNode }) {
               <Settings className="mr-2 w-5 h-5" />
               settings
             </Button>
-            <AlertDialogCom>
+            <AlertDialogCom id={id}>
               <Trash2 className="mr-2 w-5 h-5" />
               Delete
             </AlertDialogCom>
