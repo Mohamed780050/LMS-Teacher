@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import getAndSetCourseInfo from "@/config/getCourse";
-import CourseChatpers from "./CourseChatpers";
+import CourseChatpers from "./Chapters/CourseChatpers";
 import PriceForm from "./PriceForm";
 import CourseAttachment from "./CourseAtatchment";
 

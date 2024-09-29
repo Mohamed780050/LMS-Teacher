@@ -35,6 +35,7 @@ export interface CourseInfo {
     filename: string;
     data: string;
   }[];
+  chapters: string[];
 }
 export interface unsplashObject {
   urls: {
@@ -48,16 +49,18 @@ export interface unsplashObject {
 }
 export interface CourseChapters {
   _id: string;
-  cousrsID: string;
-  ownerID: string;
+  CourseId: string;
+  AuthorId: string;
   isFree: boolean;
   isPublished: boolean;
   videoURL: string;
-  title: string;
+  chapterName: string;
   description: string;
   position: number;
-  createdAt: string;
-  updatedAt: string;
+  Date: {
+    normal: string;
+    full: string;
+  };
 }
 
 export interface AlertProps {

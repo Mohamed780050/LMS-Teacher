@@ -4,7 +4,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import updateCourseInfo from "@/config/UpdateCourseInfo";
-import Spiner from "./Spiner";
+import Loading from "./Loading";
 
 function ImageUploader({ setEdit }: { setEdit: (v: boolean) => void }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,13 +39,7 @@ function ImageUploader({ setEdit }: { setEdit: (v: boolean) => void }) {
         accept="image/*"
         hidden
       />
-      {isLoading ? (
-        <span className="absolute block w-full h-full top-0 left-0 rounded-sm bg-slate-400 bg-slate-400/50">
-          <Spiner />
-        </span>
-      ) : (
-        <span hidden></span>
-      )}
+      {isLoading ? <Loading /> : <span hidden></span>}
       <Button variant="ghost" onClick={() => imageFilesInput.current?.click()}>
         <Upload size={30} />
       </Button>

@@ -18,6 +18,7 @@ const initialState: { Course: CourseInfo } = {
     completed: 0,
     total: 5,
     Attachments: [],
+    chapters: [],
   },
 };
 export const editingCourse = createSlice({
@@ -35,6 +36,9 @@ export const editingCourse = createSlice({
       action: PayloadAction<{ id: string; filename: string; data: string }[]>
     ) => {
       state.Course.Attachments = action.payload;
+    },
+    editChapters: (state, action: PayloadAction<string[]>) => {
+      state.Course.chapters = action.payload;
     },
   },
 });

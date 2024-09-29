@@ -3,7 +3,7 @@ import updateCourseInfo from "@/config/UpdateCourseInfo";
 import { unsplashObject } from "@/interfaces/interfaces";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import Spiner from "./Spiner";
+import Loading from "./Loading";
 
 function Unsplash({ setEdit }: { setEdit: (v: boolean) => void }) {
   const { id } = useParams();
@@ -14,9 +14,7 @@ function Unsplash({ setEdit }: { setEdit: (v: boolean) => void }) {
   return (
     <div className="w-full photoScroll h-60  p-3 overflow-y-scroll border bg-white">
       {isLoading ? (
-        <span className="absolute  flex items-center justify-center w-full h-full top-0 left-0 rounded-sm bg-slate-400/50 ">
-          <Spiner />
-        </span>
+        <Loading />
       ) : (
         <ul className="grid grid-cols-2 gap-1.5">
           {data?.map((item: unsplashObject, index: number) => (
