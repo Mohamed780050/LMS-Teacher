@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import passwordLength from "./passwordLength";
 import editingCourse from "./editingCourse";
 import global from "./globla";
+import Chapter from "./Chapter";
 // ...
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     passwordLength: passwordLength,
     editingCourse: editingCourse,
     global: global,
+    Chapter: Chapter,
   },
 });
 

@@ -57,6 +57,8 @@ export interface CourseChapters {
   chapterName: string;
   description: string;
   position: number;
+  complete: number;
+  total: 5;
   Date: {
     normal: string;
     full: string;

@@ -13,6 +13,7 @@ import ProtectedRoutes from "./Pages/ProtectedRoutes";
 import CreateACourse from "./Pages/CreateACourse";
 import Notfound from "@/components/Notfound";
 import EditeCourse from "./Pages/EditeCourse";
+import EditChapter from "./Pages/EditChapter";
 const data = document.cookie.split(";").find((value) => value.includes("jwt"))
   ? document.cookie.split(";").find((value) => value.includes("jwt"))
   : null;
@@ -46,6 +47,7 @@ const routes = createBrowserRouter(
           <Route index element={<Courses />}></Route>
           <Route path="createACourse" element={<CreateACourse />} />
           <Route path="editeCourse/:id" element={<EditeCourse />} />
+          <Route path="editeChapter/:id" element={<EditChapter />} />
         </Route>
       </Route>
       <Route path="Authentaction">
