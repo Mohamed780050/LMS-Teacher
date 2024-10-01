@@ -43,7 +43,7 @@ function ImageSelector() {
       ) : (
         <>
           {ImageURL ? (
-            <img src={ImageURL} alt="" />
+            <img className="rounded" src={ImageURL} alt="" />
           ) : (
             <div className="w-full border min-h-72 bg-white flex items-center justify-center text-slate-400">
               <Image size={50} />
