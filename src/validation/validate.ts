@@ -44,6 +44,10 @@ const PriceUpdate = z.object({
 const chapterName = z.object({
   chapterName: z.string().min(1, { message: "Field is empty" }),
 });
+const chapterNameUpdate = z.object({
+  newChapterName: z.string().min(1, { message: "Field is empty" }),
+});
+
 export default {
   loginvalidation,
   signupValidation,
@@ -52,4 +56,5 @@ export default {
   DescriptionUpdate,
   PriceUpdate,
   chapterName,
+  chapterNameUpdate,
 };

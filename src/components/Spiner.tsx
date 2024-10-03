@@ -1,8 +1,9 @@
-function Spiner() {
+function Spiner({ size = 40 }: { size?: number }) {
   return (
     <div className="w-full h-full flex opacity-100 items-center justify-center">
       <svg
-        className="animate-spin -ml-1 mr-3 h-10 w-10 text-sky-600"
+        style={{ width: `${size}px`, height: `${size}px` }}
+        className="animate-spin -ml-1 mr-3 text-sky-600"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
