@@ -1,3 +1,4 @@
+import ChapterDescriptionForm from "./Forms/ChapterDescriptionForm";
 import ChapterTitleFrom from "./Forms/ChapterTitleFrom";
 
 function CustomizeChatper() {
@@ -10,6 +11,7 @@ function CustomizeChatper() {
             <h2 className="text-xl">Customize your course</h2>
           </div>
           <ChapterTitleFrom/>
+          <ChapterDescriptionForm/>
           {/* <TitleForm />
           <DescriptionForm />
           <ImageSelector />
