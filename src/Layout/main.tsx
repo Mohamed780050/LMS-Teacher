@@ -8,6 +8,7 @@ import { WifiOff,Wifi } from "lucide-react";
 window.addEventListener("offline", () => {
   toast.error("You are offline", {
     icon: <WifiOff />,
+    duration:19000
   });
   console.log(navigator.onLine);
 });
