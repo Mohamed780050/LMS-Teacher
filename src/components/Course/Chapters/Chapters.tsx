@@ -13,23 +13,28 @@ import {
   DropResult,
 } from "@hello-pangea/dnd";
 import { Badge } from "@/components/ui/badge";
+import reOrder from "@/config/reOrder";
 
 function Chapters() {
   const { _id, AuthorId } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["", Chapters],
-    queryFn: () => getCourseChapters(_id, AuthorId),
+    queryFn: async () => await getCourseChapters(_id, AuthorId),
   });
   const myChapters: CourseChapters[] = data;
-  console.log(data);
+  console.log(isLoading);
   return (
     <div>
       {isLoading ? (
         <Loading />
       ) : (
-        <DragDropContext onDragEnd={() => console.log("Hello from context")}>
+        <DragDropContext
+          onDragEnd={(result: DropResult) => {
+            reOrder(result, data, _id, AuthorId, refetch);
+          }}
+        >
           <Droppable droppableId="chapters">
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
@@ -50,13 +55,13 @@ function Chapters() {
                       >
                         <div className="flex gap-x-2 items-center">
                           <div
-                            className={` px-2 py-3 border-r border-r-slate-200 hover:bg-slate-300 rounded-l-md transition ${
+                            className={` px-2 py-3 border-r border-r-slate-300 hover:bg-slate-300 rounded-l-md transition ${
                               chapter.isPublished &&
                               "border-r-sky-200 hover:bg-slate-200"
                             }`}
                             {...provided.dragHandleProps}
                           >
-                            <GripVertical className="h-5 w-5" />
+                            <GripVertical className="h-5 w-5 cursor-grab" />
                           </div>
                           <Link to={`/mycourses/editeChapter/${chapter._id}`}>
                             {chapter.chapterName}

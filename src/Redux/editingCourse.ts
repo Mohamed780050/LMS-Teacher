@@ -43,6 +43,6 @@ export const editingCourse = createSlice({
   },
 });
 
-export const { editCourse, editeCatagory, editAttachment } =
+export const { editCourse, editeCatagory, editAttachment, editChapters } =
   editingCourse.actions;
 export default editingCourse.reducer;

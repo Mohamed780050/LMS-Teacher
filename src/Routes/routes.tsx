@@ -44,7 +44,7 @@ const routes = createBrowserRouter(
             </ProtectedRoutes>
           }
         >
-          <Route index element={<Courses />}></Route>
+          <Route index element={<Courses />}/>
           <Route path="createACourse" element={<CreateACourse />} />
           <Route path="editeCourse/:id" element={<EditeCourse />} />
           <Route path="editeChapter/:id" element={<EditChapter />} />

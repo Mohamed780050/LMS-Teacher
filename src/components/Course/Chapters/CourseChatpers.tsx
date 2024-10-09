@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from "../../ui/button";
-import { Pencil, X } from "lucide-react";
+import { PlusCircle, X } from "lucide-react";
 import { Input } from "../../ui/input";
 import validate from "@/validation/validate";
 import { useForm } from "react-hook-form";
@@ -33,7 +33,6 @@ function CourseChatpers() {
   async function addChapterToCourse(
     values: z.infer<typeof validate.chapterName>
   ) {
-    console.log(values);
     const response = await Axios.post(`/chapters/`, {
       CourseId: id,
       AuthorId: userInfo.id,
@@ -43,7 +42,7 @@ function CourseChatpers() {
     console.log(response);
     setEdit(false);
   }
-  console.log(chapters);
+  // console.log(chapters);
   return (
     <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
@@ -59,8 +58,8 @@ function CourseChatpers() {
           </Button>
         ) : (
           <Button variant="ghost" className="cursor-default">
-            <Pencil
-              className="hover:text-sky-600 cursor-pointer"
+            <PlusCircle
+              className="hover:text-sky-600 cursor-pointer duration-150"
               onClick={() => setEdit(true)}
             />
           </Button>
@@ -75,7 +74,7 @@ function CourseChatpers() {
           />
           <div className="space-x-2">
             <Button disabled={isSubmitting} type="submit">
-              {isSubmitting ? <Spiner /> : "save"}
+              {isSubmitting ? <Spiner size={18} /> : "save"}
             </Button>
             <Button
               disabled={isSubmitting}
