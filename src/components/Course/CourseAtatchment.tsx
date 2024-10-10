@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
 import generateKey from "@/config/idGenerator";
 import AttachmentBody from "./AttachmentBody";
-import { editAttachment } from "@/Redux/editingCourse";
+import { addAttachment, editAttachment } from "@/Redux/editingCourse";
 import Axios from "@/config/Axios";
 
 export default function CourseAttachment() {
@@ -50,6 +50,14 @@ export default function CourseAttachment() {
           //   }
           // };
           reader.onloadend = async function (e) {
+            dispatch(
+              addAttachment({
+                id: "",
+                filename: `${file.name}`,
+                data: "",
+                completed: false,
+              })
+            );
             try {
               const response = await Axios.put(
                 `/courses/${_id}/Attachment`,
@@ -68,10 +76,12 @@ export default function CourseAttachment() {
                 }
               );
               const theData = response.data.Attachments;
-              console.log(theData)
+              console.log(theData);
               dispatch(editAttachment([...theData]));
             } catch (err) {
               console.log(err);
+            } finally {
+              setProgressBar(0);
             }
           };
           reader.readAsDataURL(file);
@@ -98,15 +108,6 @@ export default function CourseAttachment() {
           className="hidden"
           accept="application/pdf"
         />
-        <span className="w-full h-3 flex relative flex-col bg-slate-600">
-          <span className="mt-4 right-0 absolute block">
-            {Math.round(progressBar)}%
-          </span>
-          <span
-            style={{ width: `${progressBar}%` }}
-            className="bg-sky-600 block h-full"
-          ></span>
-        </span>
         <AttachmentBody progressBar={progressBar} />
       </div>
     </div>

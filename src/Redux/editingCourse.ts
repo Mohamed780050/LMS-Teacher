@@ -33,16 +33,35 @@ export const editingCourse = createSlice({
     },
     editAttachment: (
       state,
-      action: PayloadAction<{ id: string; filename: string; data: string;completed:boolean }[]>
+      action: PayloadAction<
+        { id: string; filename: string; data: string; completed: boolean }[]
+      >
     ) => {
       state.Course.Attachments = action.payload;
     },
+    addAttachment: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        filename: string;
+        data: string;
+        completed: boolean;
+      }>
+    ) => {
+      state.Course.Attachments = [...state.Course.Attachments, action.payload];
+    },
+
     editChapters: (state, action: PayloadAction<string[]>) => {
       state.Course.chapters = action.payload;
     },
   },
 });
 
-export const { editCourse, editeCatagory, editAttachment, editChapters } =
-  editingCourse.actions;
+export const {
+  editCourse,
+  editeCatagory,
+  editAttachment,
+  editChapters,
+  addAttachment,
+} = editingCourse.actions;
 export default editingCourse.reducer;
