@@ -1,33 +1,40 @@
 import { File, Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Redux/store";
-import updateCourseInfo from "@/config/UpdateCourseInfo";
+import Axios from "@/config/Axios";
+import { editAttachment } from "@/Redux/editingCourse";
 
 function AttachmentBody({ progressBar }: { progressBar: number }) {
   const { _id, Attachments } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
+  const dispatch = useDispatch();
   async function handleDelete(id: string) {
-    const filteredAttachment = Attachments.filter((item) => item.id !== id);
-    await updateCourseInfo({
-      id: _id,
-      values: { Attachments: filteredAttachment },
-    });
+    try {
+      const response = await Axios.delete(
+        `/courses/${_id}/Attachment?AttachmentsID=${id}`
+      );
+      console.log(response.data);
+      dispatch(editAttachment(response.data.Attachments));
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <>
       {Attachments ? (
         <ul className="space-y-1">
           {Attachments.map((attachment, index) => {
-            console.log(Attachments);
             return (
               <li
                 key={index * 255.7}
                 className="bg-white overflow-hidden relative z-[1] border-sky-200 border text-sky-70 rounded-sm flex items-center p-3 justify-between"
               >
                 <span
-                  style={{ width: `${progressBar}%` }}
+                  style={{
+                    width: `${attachment.completed ? 100 : progressBar}%`,
+                  }}
                   className={`absolute h-full block myloader bg-sky-100 -z-[1] left-0`}
                 ></span>
                 <div className="flex items-center space-x-1">
@@ -39,10 +46,12 @@ function AttachmentBody({ progressBar }: { progressBar: number }) {
                   </p>
                 </div>
                 <Button
+                  className="rounded-full"
+                  size="icon"
                   variant="destructive"
                   onClick={() => handleDelete(attachment.id)}
                 >
-                  <Trash2 size={20} /> Delete
+                  <Trash2 size={15} />
                 </Button>
               </li>
             );

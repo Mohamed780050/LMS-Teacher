@@ -33,7 +33,7 @@ export const editingCourse = createSlice({
     },
     editAttachment: (
       state,
-      action: PayloadAction<{ id: string; filename: string; data: string }[]>
+      action: PayloadAction<{ id: string; filename: string; data: string;completed:boolean }[]>
     ) => {
       state.Course.Attachments = action.payload;
     },

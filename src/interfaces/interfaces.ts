@@ -34,6 +34,7 @@ export interface CourseInfo {
     id: string;
     filename: string;
     data: string;
+    completed: boolean;
   }[];
   chapters: string[];
 }
