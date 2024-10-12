@@ -1,4 +1,3 @@
-import Loading from "@/components/Loading";
 import getCourseChapters from "@/config/getCourseChapters";
 import { CourseChapters } from "@/interfaces/interfaces";
 import { RootState } from "@/Redux/store";
@@ -14,6 +13,7 @@ import {
 } from "@hello-pangea/dnd";
 import { Badge } from "@/components/ui/badge";
 import reOrder from "@/config/reOrder";
+import CourseChaptersSkeleton from "../CourseChaptersSkeleton";
 
 function Chapters() {
   const { _id, AuthorId } = useSelector(
@@ -24,11 +24,10 @@ function Chapters() {
     queryFn: async () => await getCourseChapters(_id, AuthorId),
   });
   const myChapters: CourseChapters[] = data;
-  console.log(isLoading);
   return (
     <div>
       {isLoading ? (
-        <Loading />
+        <CourseChaptersSkeleton />
       ) : (
         <DragDropContext
           onDragEnd={(result: DropResult) => {
