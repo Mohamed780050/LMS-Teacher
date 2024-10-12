@@ -4,7 +4,7 @@ import { CourseChapters } from "@/interfaces/interfaces";
 import { RootState } from "@/Redux/store";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   DragDropContext,
@@ -76,6 +76,9 @@ function Chapters() {
                           >
                             {chapter.isPublished ? "Published" : "Draft"}
                           </Badge>
+                          <Link to={`/mycourses/editeChapter/${chapter._id}`}>
+                            <Pencil className="hover:text-sky-600" size={22}/>
+                          </Link>
                         </div>
                       </div>
                     )}
