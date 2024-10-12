@@ -4,6 +4,7 @@ import { RootState } from "@/Redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import getChapterInfo from "@/config/getChapterInfo";
+import BackToCouse from "@/components/Course/Chapters/BackToCouse";
 
 function EditChapter() {
   const { id } = useParams();
@@ -12,7 +13,8 @@ function EditChapter() {
     (async () => await getChapterInfo(`${id}`))();
   }
   return (
-    <div>
+    <div className="p-6">
+      <BackToCouse/>
       <ChapterTitle />
       <CustomizeChatper />
     </div>
