@@ -1,20 +1,19 @@
 import ChapterTitle from "@/components/Course/Chapters/ChapterTitle";
 import CustomizeChatper from "@/components/Course/Chapters/CustomizeChatper";
-import { RootState } from "@/Redux/store";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import getChapterInfo from "@/config/getChapterInfo";
 import BackToCouse from "@/components/Course/Chapters/BackToCouse";
+import { useEffect } from "react";
 
 function EditChapter() {
   const { id } = useParams();
-  const { _id } = useSelector((state: RootState) => state.Chapter.chapter);
-  if (!_id) {
+  useEffect(() => {
     (async () => await getChapterInfo(`${id}`))();
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="p-6">
-      <BackToCouse/>
+      <BackToCouse />
       <ChapterTitle />
       <CustomizeChatper />
     </div>

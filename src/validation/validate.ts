@@ -50,7 +50,9 @@ const chapterNameUpdate = z.object({
 const chapterDescriptionUpdate = z.object({
   newChapterDescription: z.string().min(1, { message: "Field is empty" }),
 });
-
+const chapterIsFree = z.object({
+  isFree: z.boolean(),
+});
 export default {
   loginvalidation,
   signupValidation,
@@ -60,5 +62,6 @@ export default {
   PriceUpdate,
   chapterName,
   chapterNameUpdate,
-  chapterDescriptionUpdate
+  chapterDescriptionUpdate,
+  chapterIsFree
 };
