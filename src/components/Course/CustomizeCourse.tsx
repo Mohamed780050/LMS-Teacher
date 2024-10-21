@@ -16,10 +16,12 @@ import getAndSetCourseInfo from "@/config/getCourse";
 import CourseChatpers from "./Chapters/CourseChatpers";
 import PriceForm from "./PriceForm";
 import CourseAttachment from "./CourseAtatchment";
+import { Skeleton } from "../ui/skeleton";
 
 function CustomizeCourse() {
   const { id } = useParams();
   const { Course } = useSelector((state: RootState) => state.editingCourse);
+  const { loading } = useSelector((state: RootState) => state.global);
   if (Course._id === "") {
     getAndSetCourseInfo(`${id}`);
   }
@@ -31,10 +33,18 @@ function CustomizeCourse() {
             <IconBage icon={LayoutDashboard} />
             <h2 className="text-xl">Customize your course</h2>
           </div>
-          <TitleForm />
-          <DescriptionForm />
-          <ImageSelector />
-          <Catagory />
+          {loading ? <Skeleton className="w-full h-[96px]" /> : <TitleForm />}
+          {loading ? (
+            <Skeleton className="w-full h-[96px]" />
+          ) : (
+            <DescriptionForm />
+          )}
+          {loading ? (
+            <Skeleton className="w-full h-[311.15px]" />
+          ) : (
+            <ImageSelector />
+          )}
+          {loading ? <Skeleton className="w-full h-[104px]" /> : <Catagory />}
         </div>
         <div className="space-y-6">
           {/* Course Chapter */}
@@ -42,19 +52,29 @@ function CustomizeCourse() {
             <IconBage icon={ListChecks} />
             <h2 className="text-xl">Course chapters</h2>
           </div>
-          <CourseChatpers />
+
+          {loading ? (
+            <Skeleton className="w-full h-[300x]" />
+          ) : (
+            <CourseChatpers />
+          )}
+
           {/* Course Price */}
           <div className="flex items-center space-x-1">
             <IconBage icon={CircleDollarSign} />
             <h2 className="text-xl">Sell your course</h2>
           </div>
-          <PriceForm />
+          {loading ? <Skeleton className="w-full h-[104px]" /> : <PriceForm />}
           {/* Course Resourses and Attachment */}
           <div className="flex items-center space-x-1">
             <IconBage icon={File} />
             <h2 className="text-xl">Course Resourses</h2>
           </div>
-          <CourseAttachment />
+          {loading ? (
+            <Skeleton className="w-full h-[300x]" />
+          ) : (
+            <CourseAttachment />
+          )}
         </div>
       </div>
     </>
