@@ -28,7 +28,7 @@ function Bannar({ lable, variant }: BannarProps) {
   const Icon = IconMap[variant || "warning"];
   return (
     <div className={cn(bannerVariants({ variant }))}>
-      <Icon className="w-4 h-4" />
+      <Icon className="w-4 h-4 mr-2" />
       {lable}
     </div>
   );
