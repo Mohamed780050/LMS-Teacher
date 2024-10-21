@@ -54,7 +54,7 @@ function CustomizeCourse() {
           </div>
 
           {loading ? (
-            <Skeleton className="w-full h-[300x]" />
+            <Skeleton className="w-full h-[300px]" />
           ) : (
             <CourseChatpers />
           )}
@@ -71,7 +71,7 @@ function CustomizeCourse() {
             <h2 className="text-xl">Course Resourses</h2>
           </div>
           {loading ? (
-            <Skeleton className="w-full h-[300x]" />
+            <Skeleton className="w-full h-[300px]" />
           ) : (
             <CourseAttachment />
           )}
