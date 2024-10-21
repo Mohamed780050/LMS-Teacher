@@ -34,7 +34,7 @@ function AcccessSetting() {
   return (
     <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Chapter Name</h2>
+        <h2 className="text-xl font-bold">Chapter Access</h2>
         {edit ? (
           <Button
             disabled={isSubmitting}

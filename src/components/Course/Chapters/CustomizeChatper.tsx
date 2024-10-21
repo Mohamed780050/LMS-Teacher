@@ -1,8 +1,9 @@
-import { Eye } from "lucide-react";
+import { Eye, Video } from "lucide-react";
 import ChapterDescriptionForm from "./Forms/ChapterDescriptionForm";
 import ChapterTitleFrom from "./Forms/ChapterTitleFrom";
 import IconBage from "@/components/IconBadge";
 import AcccessSetting from "./Forms/AcccessSetting";
+import ChapterVideo from "./Forms/ChapterVideo";
 
 function CustomizeChatper() {
   return (
@@ -29,10 +30,10 @@ function CustomizeChatper() {
           <AcccessSetting />
           {/* Course Resourses and Attachment */}
           <div className="flex items-center space-x-1">
-            {/* <IconBage icon={File} /> */}
-            <h2 className="text-xl">Course Resourses</h2>
+            <IconBage icon={Video} />
+            <h2 className="text-xl">Chapter Video</h2>
           </div>
-          {/* <CourseAttachment /> */}
+          <ChapterVideo />
         </div>
       </div>
     </>
