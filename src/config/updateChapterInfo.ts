@@ -17,6 +17,7 @@ async function updateChapterInfo(
       ChapterId: id,
       ...values,
     });
+    console.log(response);
     store.dispatch(setChapter(response.data));
   } catch (err) {
     console.log(err);

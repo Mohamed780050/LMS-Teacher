@@ -59,7 +59,7 @@ export interface CourseChapters {
   description: string;
   position: number;
   complete: number;
-  total: 5;
+  total: 3;
   Date: {
     normal: string;
     full: string;

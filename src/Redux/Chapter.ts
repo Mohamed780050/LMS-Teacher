@@ -12,7 +12,7 @@ const initialState: { chapter: CourseChapters } = {
     chapterName: "",
     description: "",
     position: 0,
-    total: 5,
+    total: 3,
     complete: 1,
     Date: {
       normal: "",
