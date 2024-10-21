@@ -29,7 +29,7 @@ function AttachmentBody({ progressBar }: { progressBar: number }) {
             return (
               <li
                 key={index * 255.7}
-                className="bg-white overflow-hidden relative z-[1] border-sky-200 border text-sky-70 rounded-sm flex items-center p-3 justify-between"
+                className="bg-white dark:text-black overflow-hidden relative z-[1] border-sky-200 border text-sky-70 rounded-sm flex items-center p-3 justify-between"
               >
                 <span
                   style={{

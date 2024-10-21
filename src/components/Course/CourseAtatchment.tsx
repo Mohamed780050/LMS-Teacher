@@ -92,7 +92,7 @@ export default function CourseAttachment() {
     }
   }
   return (
-    <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
+    <div className="mt-6 boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Attachment</h2>
         <Button variant="ghost" onClick={() => filesInput.current?.click()}>

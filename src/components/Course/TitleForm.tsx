@@ -30,7 +30,7 @@ function TitleForm() {
     setEdit(false);
   }
   return (
-    <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
+    <div className="mt-6 boder bg-slate-100 dark:bg-slate-600 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Name</h2>
         {edit ? (
@@ -60,7 +60,7 @@ function TitleForm() {
           <Input
             {...register("newCourseName")}
             defaultValue={courseName}
-            className="rounded-none bg-white"
+            className="rounded-none bg-white dark:text-black"
             disabled={isSubmitting}
           />
           <div className="space-x-2">

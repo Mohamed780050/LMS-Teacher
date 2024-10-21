@@ -44,7 +44,7 @@ function CourseChatpers() {
   }
   // console.log(chapters);
   return (
-    <div className="mt-6 boder bg-slate-100 rounded-md p-4 space-y-2">
+    <div className="mt-6 boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Chapters</h2>
         {edit ? (

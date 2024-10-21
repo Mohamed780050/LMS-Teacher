@@ -13,7 +13,7 @@ function Catagory() {
   const { CatagoryItmes } = data;
 
   return (
-    <div className="boder bg-slate-100 rounded-md p-4 space-y-2">
+    <div className="boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Catagory</h2>
         {edit ? (
