@@ -1,4 +1,4 @@
-import { Eye, Video } from "lucide-react";
+import { Eye, LayoutDashboard, Video } from "lucide-react";
 import ChapterDescriptionForm from "./Forms/ChapterDescriptionForm";
 import ChapterTitleFrom from "./Forms/ChapterTitleFrom";
 import IconBage from "@/components/IconBadge";
@@ -15,8 +15,8 @@ function CustomizeChatper() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
         <div className="space-y-6">
           <div className="flex items-center space-x-1">
-            {/* <IconBage icon={LayoutDashboard} /> */}
-            <h2 className="text-xl">Customize your course</h2>
+            <IconBage icon={LayoutDashboard} />
+            <h2 className="text-xl">Customize Chapter</h2>
           </div>
           {loading ? (
             <Skeleton className="w-full h-[96px]" />
@@ -28,8 +28,6 @@ function CustomizeChatper() {
           ) : (
             <ChapterDescriptionForm />
           )}
-        </div>
-        <div className="space-y-6">
           {/* Chapter Access */}
           <div className="flex items-center space-x-1">
             <IconBage icon={Eye} />
@@ -40,6 +38,8 @@ function CustomizeChatper() {
           ) : (
             <AcccessSetting />
           )}
+        </div>
+        <div className="space-y-6">
           {/* Chatper Video */}
           <div className="flex items-center space-x-1">
             <IconBage icon={Video} />
