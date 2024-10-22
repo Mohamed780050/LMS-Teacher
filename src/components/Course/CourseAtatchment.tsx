@@ -50,15 +50,15 @@ export default function CourseAttachment() {
           //   }
           // };
           reader.onloadend = async function (e) {
-            dispatch(
-              addAttachment({
-                id: "",
-                filename: `${file.name}`,
-                data: "",
-                completed: false,
-              })
-            );
             try {
+              dispatch(
+                addAttachment({
+                  id: "",
+                  filename: `${file.name}`,
+                  data: "",
+                  completed: false,
+                })
+              );
               const response = await Axios.put(
                 `/courses/${_id}/Attachment`,
                 {

@@ -48,7 +48,14 @@ export const editingCourse = createSlice({
         completed: boolean;
       }>
     ) => {
-      state.Course.Attachments = [...state.Course.Attachments, action.payload];
+      if (state.Course.Attachments === null) {
+        state.Course.Attachments = [action.payload];
+      } else {
+        state.Course.Attachments = [
+          ...state.Course.Attachments,
+          action.payload,
+        ];
+      }
     },
 
     editChapters: (state, action: PayloadAction<string[]>) => {
