@@ -46,8 +46,9 @@ function Chapters() {
                     {(provided) => (
                       <div
                         className={`mb-1 pr-2 flex items-center justify-between gap-x-2 bg-slate-200 border-slate-200 bordr text-slate-700 rounded-md ${
-                          chapter.isPublished &&
-                          "bg-sky-100 border-sky-200 text-sky-700"
+                          chapter.isPublished
+                            ? "bg-sky-300/30 border-sky-200 text-sky-700"
+                            : ""
                         }`}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
@@ -76,7 +77,7 @@ function Chapters() {
                             {chapter.isPublished ? "Published" : "Draft"}
                           </Badge>
                           <Link to={`/mycourses/editeChapter/${chapter._id}`}>
-                            <Pencil className="hover:text-sky-600" size={22}/>
+                            <Pencil className="hover:text-sky-600" size={22} />
                           </Link>
                         </div>
                       </div>

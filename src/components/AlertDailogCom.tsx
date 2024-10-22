@@ -9,12 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import Axios from "@/config/Axios";
 import { AlertProps } from "@/interfaces/interfaces";
 import { changeReFetcher } from "@/Redux/globla";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export function AlertDialogCom({
   children,
@@ -23,27 +23,21 @@ export function AlertDialogCom({
   okbtn = "Continue",
   id,
 }: AlertProps) {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   async function handleDelete(id: string) {
     try {
       const response = await Axios.delete(`/courses/mycourses/${id}`);
-      console.log(response);
       dispatch(changeReFetcher());
       toast.success(response.data.message);
+      navigate("/mycourses")
     } catch (err) {
       console.log(err);
     }
   }
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button
-          className="flex items-center justify-start hover:bg-red-600 hover:text-white"
-          variant="ghost"
-        >
-          {children}
-        </Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{title}</AlertDialogTitle>

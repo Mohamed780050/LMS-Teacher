@@ -36,8 +36,13 @@ export function PopoverCom({
               settings
             </Button>
             <AlertDialogCom id={id}>
-              <Trash2 className="mr-2 w-5 h-5" />
-              Delete
+              <Button
+                className="flex items-center justify-start hover:bg-red-600 hover:text-white"
+                variant="ghost"
+              >
+                <Trash2 className="mr-2 w-5 h-5" />
+                Delete
+              </Button>
             </AlertDialogCom>
           </div>
         </div>
