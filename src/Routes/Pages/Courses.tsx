@@ -1,4 +1,5 @@
 import CourseTable from "@/components/Course/CousrsTable";
+import Pagenator from "@/components/Course/Pagenator";
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ function Courses() {
         </Button>
       </Link>
       <CourseTable />
+      <Pagenator/>
     </div>
   );
 }

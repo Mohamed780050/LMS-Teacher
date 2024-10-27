@@ -3,6 +3,7 @@ import passwordLength from "./passwordLength";
 import editingCourse from "./editingCourse";
 import global from "./globla";
 import Chapter from "./Chapter";
+import  pagenator  from "./pagenator";
 // ...
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     editingCourse: editingCourse,
     global: global,
     Chapter: Chapter,
+    pagenator:pagenator
   },
 });
 

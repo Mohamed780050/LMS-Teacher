@@ -19,6 +19,8 @@ import { editCourse } from "@/Redux/editingCourse";
 import data from "@/data/data";
 import { PopoverCom } from "./DrobCourseSetting";
 import { RootState } from "@/Redux/store";
+import { setTotal } from "@/Redux/pagenator";
+import { setLoading } from "@/Redux/globla";
 
 const CatagoryItmes = data.CatagoryItmes;
 export default function CourseTable() {
@@ -26,17 +28,26 @@ export default function CourseTable() {
   const key = localStorage.getItem("userInfo");
   const userInfo = key ? JSON.parse(key) : null;
   const dispatch = useDispatch();
+  const { pageSize, pageCounter } = useSelector(
+    (state: RootState) => state.pagenator
+  );
   const { data, isLoading } = useQuery({
-    queryKey: [`${reFetcher}`],
+    queryKey: [`${reFetcher}`, `${pageCounter}`, `${pageSize}`],
     queryFn: getMyCourses,
   });
   async function getMyCourses() {
     try {
+      dispatch(setLoading(true));
       if (userInfo === null) throw Error("No user id");
-      const response = await Axios.get(`/courses/mycourses/${userInfo.id}`);
-      return response.data;
+      const response = await Axios.get(
+        `/courses/mycourses/${userInfo.id}?pageSize=${pageSize}&pageCount=${pageCounter}`
+      );
+      dispatch(setTotal(response.data.total));
+      return response.data.courses;
     } catch (err) {
       console.log(err);
+    } finally {
+      dispatch(setLoading(false));
     }
   }
   const mycousres: [] | CourseInfo[] = data;
@@ -78,12 +89,17 @@ export default function CourseTable() {
                       </PopoverCom>
                     </TableCell>
                     <TableCell className="border-r">
-                      <Badge variant="secondary">
-                        {CatagoryItmes.map((item) => {
-                          if (item.value === course.catagory) return item.Icon;
-                        })}{" "}
-                        {course.catagory}
-                      </Badge>
+                      {course.catagory ? (
+                        <Badge variant="secondary">
+                          {CatagoryItmes.map((item) => {
+                            if (item.value === course.catagory)
+                              return item.Icon;
+                          })}
+                          {course.catagory}
+                        </Badge>
+                      ) : (
+                        <p className="text-sm italic text-slate-500">No Catagory</p>
+                      )}
                     </TableCell>
                     <TableCell className="text-right border-r">
                       {/* {course.students.toLocaleString()} */}
