@@ -19,6 +19,8 @@ const initialState: { Course: CourseInfo } = {
     total: 5,
     Attachments: [],
     chapters: [],
+    students: 0,
+    rating: 0.0,
   },
 };
 export const editingCourse = createSlice({

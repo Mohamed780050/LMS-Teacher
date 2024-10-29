@@ -98,15 +98,17 @@ export default function CourseTable() {
                           {course.catagory}
                         </Badge>
                       ) : (
-                        <p className="text-sm italic text-slate-500">No Catagory</p>
+                        <p className="text-sm italic text-slate-500">
+                          No Catagory
+                        </p>
                       )}
                     </TableCell>
-                    <TableCell className="text-right border-r">
-                      {/* {course.students.toLocaleString()} */}
+                    <TableCell className="text-center border-r">
+                      {course.students.toLocaleString()}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className="text-center">
                       <span className="inline-flex items-center">
-                        {/* {course.rating} */}
+                        {parseFloat(`${course.rating}`)}
                         <Star className="w-4 h-4 text-yellow-400 ml-1" />
                       </span>
                     </TableCell>

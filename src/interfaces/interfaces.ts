@@ -37,6 +37,8 @@ export interface CourseInfo {
     completed: boolean;
   }[];
   chapters: string[];
+  students: number;
+  rating: number;
 }
 export interface unsplashObject {
   urls: {
