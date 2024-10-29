@@ -56,7 +56,7 @@ export default function CourseTable() {
       {isLoading ? (
         <TableSkeleton />
       ) : (
-        <div className="container mx-auto py-10">
+        <div className=" mx-auto py-5">
           <Table className="border rounded-sm">
             <TableCaption>
               {mycousres.length
@@ -69,6 +69,8 @@ export default function CourseTable() {
                   Course Name
                 </TableHead>
                 <TableHead className="border-r">Category</TableHead>
+                <TableHead className="border-r">Pricing</TableHead>
+                <TableHead className="border-r">isPublished</TableHead>
                 <TableHead className="border-r">Students</TableHead>
                 <TableHead className="border-r">Rating</TableHead>
               </TableRow>
@@ -103,10 +105,28 @@ export default function CourseTable() {
                         </p>
                       )}
                     </TableCell>
-                    <TableCell className="text-center border-r">
+                    <TableCell className="border-r">
+                      {course.price ? (
+                        `$${course.price}`
+                      ) : (
+                        <p className="text-sm italic text-slate-500">
+                          No Price
+                        </p>
+                      )}
+                    </TableCell>
+                    <TableCell className="border-r">
+                      {course.IsPublished ? (
+                        <Badge className="bg-sky-700 hover:bg-sky-800 transition">
+                          Published
+                        </Badge>
+                      ) : (
+                        <Badge>Draft</Badge>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-left border-r">
                       {course.students.toLocaleString()}
                     </TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="text-left">
                       <span className="inline-flex items-center">
                         {parseFloat(`${course.rating}`)}
                         <Star className="w-4 h-4 text-yellow-400 ml-1" />

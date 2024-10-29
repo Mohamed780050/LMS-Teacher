@@ -33,3 +33,14 @@ a.active {
   background-color: #0369a1;
 }
 
+.tableScrolling::-webkit-scrollbar {
+  height: 15px;
+}
+.tableScrolling::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10px;
+}
+.tableScrolling::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0369a1;
+}
