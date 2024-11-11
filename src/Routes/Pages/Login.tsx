@@ -24,7 +24,7 @@ function Login() {
       const response = await Axios.post("/auth", values);
       localStorage.setItem("userInfo", JSON.stringify(response.data.info));
       document.cookie =
-        "jwt" +
+        "lms-teacher-token" +
         "=" +
         response.data?.jwt +
         ";" +

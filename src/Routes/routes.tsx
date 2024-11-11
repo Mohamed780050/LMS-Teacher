@@ -14,8 +14,8 @@ import CreateACourse from "./Pages/CreateACourse";
 import Notfound from "@/components/Notfound";
 import EditeCourse from "./Pages/EditeCourse";
 import EditChapter from "./Pages/EditChapter";
-const data = document.cookie.split(";").find((value) => value.includes("jwt"))
-  ? document.cookie.split(";").find((value) => value.includes("jwt"))
+const data = document.cookie.split(";").find((value) => value.includes("lms-teacher-token"))
+  ? document.cookie.split(";").find((value) => value.includes("lms-teacher-token"))
   : null;
 const isAllowed = data !== null ? true : false;
 const routes = createBrowserRouter(
