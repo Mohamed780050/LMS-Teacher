@@ -12,7 +12,7 @@ import z from "zod";
 import Spiner from "../../Spiner";
 import Axios from "@/config/Axios";
 import { changeReFetcher } from "@/Redux/globla";
-import Chapters from "./Chapters";
+import Chapters from "../Chapters";
 
 function CourseChatpers() {
   const key = localStorage.getItem("userInfo");
@@ -44,7 +44,7 @@ function CourseChatpers() {
   }
   // console.log(chapters);
   return (
-    <div className="mt-6 boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2">
+    <div className="mt-6 boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2 relative">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-bold">Course Chapters</h2>
         {edit ? (
