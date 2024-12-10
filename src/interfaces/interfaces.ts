@@ -37,7 +37,7 @@ export interface CourseInfo {
     completed: boolean;
   }[];
   chapters: string[];
-  students: number;
+  students: string[];
   rating: number;
 }
 export interface unsplashObject {

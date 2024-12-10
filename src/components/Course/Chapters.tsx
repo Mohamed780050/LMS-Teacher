@@ -10,7 +10,7 @@ function Chapters() {
   const { _id, AuthorId } = useSelector(
     (state: RootState) => state.editingCourse.Course
   );
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["", Chapters],
     queryFn: async () => await getCourseChapters(_id, AuthorId),
   });

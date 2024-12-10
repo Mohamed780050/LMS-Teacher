@@ -92,7 +92,7 @@ export default function CourseTable() {
                     </TableCell>
                     <TableCell className="border-r">
                       {course.catagory ? (
-                        <Badge variant="secondary">
+                        <Badge variant="secondary" className="text-nowrap">
                           {CatagoryItmes.map((item) => {
                             if (item.value === course.catagory)
                               return item.Icon;
@@ -124,7 +124,7 @@ export default function CourseTable() {
                       )}
                     </TableCell>
                     <TableCell className="text-left border-r">
-                      {course.students.toLocaleString()}
+                      {course.students.length}
                     </TableCell>
                     <TableCell className="text-left">
                       <span className="inline-flex items-center">

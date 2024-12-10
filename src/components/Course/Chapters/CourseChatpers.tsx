@@ -42,7 +42,6 @@ function CourseChatpers() {
     console.log(response);
     setEdit(false);
   }
-  // console.log(chapters);
   return (
     <div className="mt-6 boder dark:bg-slate-600 bg-slate-100 rounded-md p-4 space-y-2 relative">
       <div className="flex justify-between items-center">

@@ -78,7 +78,7 @@ function DescriptionForm() {
           </div>
         </form>
       ) : (
-        <p className="font-medium text-sm">
+        <pre className="font-medium text-sm block text-wrap">
           {Description ? (
             Description
           ) : (
@@ -86,7 +86,7 @@ function DescriptionForm() {
               No Description
             </span>
           )}
-        </p>
+        </pre>
       )}
     </div>
   );
