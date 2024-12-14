@@ -75,3 +75,11 @@ export interface AlertProps {
   okbtn?: string;
   id: string;
 }
+export interface DataCardProps {
+  value: number;
+  label: string;
+  shouldFormat?: boolean;
+}
+export interface ChartsProps {
+  data: { name: string; total: number }[];
+}
